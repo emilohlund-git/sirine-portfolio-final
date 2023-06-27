@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox background="white">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-base-300 via-base-100 to-base-200">Media</h1>
           {project.expand.primary_research.map((research) =>
-            <div className="flex flex-col" key={research.id}>
+            <div className="flex flex-col break-all max-w-full" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.map((media) =>
                 <a key={media.id} className="link link-secondary text-lg w-fit flex items-center gap-x-1" target="_blank" href={getImage(media, media.media!)}>
@@ -115,7 +115,7 @@ export default async function Page({ params }: { params: { project: string } }) 
             <div key={research.id}>
               {research.expand.media.filter((media) => media.embed_src !== '').map((media) =>
                 <iframe key={media.id}
-                  className="lg:h-[37rem] h-full w-full" src={media.embed_src} allowFullScreen
+                  className="lg:h-[37rem] h-[50vh] w-full" src={media.embed_src} allowFullScreen
                   sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
                 />
               )}
@@ -136,23 +136,23 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
-        <GridBox variant="no-padding" background="white">
-          <div className="w-full h-full relative">
+        <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
+          <div className="w-full h-[40vh] lg:h-full relative">
             <Image fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.persona, project.expand.persona.media!)} alt={"Project persona"} />
           </div>
         </GridBox>
-        <GridBox spotlight={true} variant="center" position="end" background="gray">
+        <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Persona</h1>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
-        <GridBox spotlight={true} variant="center" background="gray">
+        <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Affinity Map</h1>
         </GridBox>
         <GridBox variant="no-padding" background="white">
-          <div className="w-full h-full relative bg-[#ededf1]">
+          <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
             <Image fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.affinity_map, project.expand.affinity_map.media!)} alt={"Project affinity map"} />
@@ -160,8 +160,8 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
-        <GridBox variant="no-padding" background="white">
-          <div className="w-full h-full relative bg-[#ededf1]">
+        <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
+          <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
             <Image fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.user_flow, project.expand.user_flow.media!)} alt={"Project user flow"} />
@@ -172,11 +172,11 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
-        <GridBox spotlight={true} variant="center" background="gray">
+        <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Navigation Map</h1>
         </GridBox>
         <GridBox variant="no-padding" background="white">
-          <div className="w-full h-full relative bg-[#fdfdfd]">
+          <div className="w-ful h-[40vh] lg:h-full relative bg-[#fdfdfd]">
             <Image fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.navigation_map, project.expand.navigation_map.media!)} alt={"Project navigation map"} />
@@ -193,17 +193,17 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={3}>
-        <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2}>
+        <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
-            <GridBox key={media.id} variant="no-padding" background="white">
+            <GridBox key={media.id} variant="no-padding" background="white" className="h-[40vh] lg:h-full">
               <Image fill className="object-scale-down p-10" src={getImage(media, media.media!)} alt="Logo" />
             </GridBox>
           )}
         </GridContainer>
-        <GridBox variant="no-padding" background="transparent" className="items-center justify-center">
-          <video muted className="absolute z-10 -top-[30rem] w-auto min-w-[50%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+        <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
+          <video muted className="absolute z-10 lg:-top-[30rem] w-auto min-w-[50%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
         </GridBox>
-        <GridBox spotlight={true} background="gray">
+        <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Logo</h1>
           <div dangerouslySetInnerHTML={{ __html: project.expand.logo.content }} />
         </GridBox>
@@ -213,7 +213,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Brand colors</h1>
           <div dangerouslySetInnerHTML={{ __html: project.expand.brand_colors.content }} />
         </GridBox>
-        <GridBox variant="no-padding" background="white">
+        <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
               <Image fill style={{
@@ -224,7 +224,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={3}>
-        <GridBox variant="no-padding" background="white" className="p-20">
+        <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
               <Image fill style={{
@@ -233,14 +233,14 @@ export default async function Page({ params }: { params: { project: string } }) 
             </div>
           )}
         </GridBox>
-        <GridBox variant="no-padding" background="white" className="p-20">
+        <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-full relative">
             <Image fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.font_family, project.expand.font_family.media!)} alt={"Logo"} />
           </div>
         </GridBox>
-        <GridBox spotlight={true} background="gray">
+        <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Iconography & Font Family</h1>
           <div dangerouslySetInnerHTML={{ __html: project.expand.iconography[0].content }} />
         </GridBox>
@@ -275,7 +275,7 @@ export default async function Page({ params }: { params: { project: string } }) 
             })}
           </div>
         </GridBox>
-        <GridBox variant="no-padding" background="gray">
+        <GridBox variant="no-padding" background="gray" className="h-[100vh] lg:h-full">
           <div className="relative w-full">
             <FigmaPrototype url={project.expand.interactive_prototype.embed_src} />
           </div>

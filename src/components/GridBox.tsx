@@ -16,6 +16,7 @@ const GridBox: React.FC<Props> = ({ children, background = 'transparent', varian
       case 'gray': return 'bg-gradient-to-tr from-base-200 via-base-100 to-base-300';
       case 'white': return 'bg-[#fdfdfd]';
       case 'transparent': return '';
+      default: return '';
     }
   }
 
