@@ -6,13 +6,7 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: [
-      "127.0.0.1",
-      "localhost",
-      "https://sirine.fly.dev/api",
-      "https://sirine.fly.dev/",
-      "https://sirine.fly.dev",
-    ],
+    domains: ["127.0.0.1", "localhost", "sirine.fly.dev"],
   },
 };
 
