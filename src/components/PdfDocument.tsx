@@ -19,7 +19,6 @@ const PDFViewer: React.FC<{ fileURL: string }> = ({ fileURL }) => {
     <Document
       className="document-pdf"
       file={fileURL}
-      renderMode='canvas'
       onLoadSuccess={onDocumentLoadSuccess}
     >
       {Array.from(new Array(numPages), (el, index) => (
