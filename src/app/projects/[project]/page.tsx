@@ -65,7 +65,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               <li>{project.title}</li>
             </ul>
           </div>
-          <h1 className="font-extrabold text-[6rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">{project.title}</h1>
+          <h1 className="font-extrabold text-[4rem] lg:text-[6rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">{project.title}</h1>
         </GridBox>
       </div>
       <GridContainer cols={2}>
@@ -238,7 +238,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         backgroundPosition: 'center'
       }} id="projects" className="grid grid-cols-1 lg:grid-cols-1 h-[100vh] lg:h-[50vh] w-full">
         <GridBox variant="center" background='transparent' className="bg-black bg-opacity-50">
-          <h1 className="font-extrabold text-[5rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">MockUps &<br /> Interactive Prototype</h1>
+          <h1 className="font-extrabold text-[3rem] lg:text-[5rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Mockups &<br /> Interactive Prototype</h1>
         </GridBox>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
