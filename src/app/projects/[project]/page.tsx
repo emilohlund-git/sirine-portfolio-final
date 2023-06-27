@@ -138,7 +138,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.persona, project.expand.persona.media!)} alt={"Project persona"} />
           </div>
@@ -153,7 +153,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.affinity_map, project.expand.affinity_map.media!)} alt={"Project affinity map"} />
           </div>
@@ -162,7 +162,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.user_flow, project.expand.user_flow.media!)} alt={"Project user flow"} />
           </div>
@@ -177,7 +177,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-ful h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.navigation_map, project.expand.navigation_map.media!)} alt={"Project navigation map"} />
           </div>
@@ -196,7 +196,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white" className="h-[40vh] lg:h-full">
-              <Image fill className="object-scale-down p-10" src={getImage(media, media.media!)} alt="Logo" />
+              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill className="object-scale-down p-10" src={getImage(media, media.media!)} alt="Logo" />
             </GridBox>
           )}
         </GridContainer>
@@ -216,7 +216,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
-              <Image fill style={{
+              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
                 objectFit: 'contain'
               }} src={getImage(media, media.media!)} alt={"Logo"} />
             </div>
@@ -227,7 +227,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
-              <Image fill style={{
+              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
                 objectFit: 'contain'
               }} src={getImage(media, media.media!)} alt={"Logo"} />
             </div>
@@ -235,7 +235,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-full relative">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={getImage(project.expand.font_family, project.expand.font_family.media!)} alt={"Logo"} />
           </div>
@@ -262,7 +262,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
                   <Mockup>
-                    <Image fill style={{
+                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
                       objectFit: 'cover'
                     }} src={getImage(mockup, mockup.media!)} alt={"Mockups"} />
                   </Mockup>
@@ -275,8 +275,8 @@ export default async function Page({ params }: { params: { project: string } }) 
             })}
           </div>
         </GridBox>
-        <GridBox variant="no-padding" background="gray" className="h-[100vh] lg:h-full">
-          <div className="relative w-full">
+        <GridBox variant="no-padding" background="gray">
+          <div className="relative w-full h-full">
             <FigmaPrototype url={project.expand.interactive_prototype.embed_src} />
           </div>
         </GridBox>

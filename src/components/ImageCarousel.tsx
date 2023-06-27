@@ -13,7 +13,7 @@ const ImageCarousel: React.FC<Props> = ({ images }) => {
       {images?.map((image, index) => {
         return (
           <div id={`slide${index}`} key={image + index} className="carousel-item w-full h-full relative">
-            <Image fill style={{
+            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
               objectFit: 'contain'
             }} src={image} alt={"Carousel item for Key Insights"} />
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
