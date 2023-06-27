@@ -193,7 +193,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           )}
         </GridContainer>
         <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
-          <video muted className="absolute z-10 lg:-top-[30rem] w-auto min-w-[50%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+          <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[100%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Logo</h1>
