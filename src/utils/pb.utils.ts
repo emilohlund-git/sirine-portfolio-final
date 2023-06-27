@@ -4,5 +4,11 @@ const getImage = (media: any, url: string) => {
   return pb.files.getUrl(media, url);
 }
 
-export { getImage };
+const getImageThumb = (media: any, url: string) => {
+  return pb.files.getUrl(media, url, {
+    thumb: '100x100'
+  })
+}
+
+export { getImage, getImageThumb };
 

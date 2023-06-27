@@ -1,12 +1,12 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import FigmaPrototype from "../../../components/FigmaPrototype";
 import GridBox from "../../../components/GridBox";
 import GridContainer from "../../../components/GridContainer";
 import ImageCarousel from "../../../components/ImageCarousel";
 import Mockup from "../../../components/Mockup";
+import ResponsiveImage from "../../../components/ResponsiveImage";
 import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
@@ -138,9 +138,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={getImage(project.expand.persona, project.expand.persona.media!)} alt={"Project persona"} />
+            <ResponsiveImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Research Charts & Bars"} />
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
@@ -153,18 +151,14 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={getImage(project.expand.affinity_map, project.expand.affinity_map.media!)} alt={"Project affinity map"} />
+            <ResponsiveImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"Research Charts & Bars"} />
           </div>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={getImage(project.expand.user_flow, project.expand.user_flow.media!)} alt={"Project user flow"} />
+            <ResponsiveImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"Research Charts & Bars"} />
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
@@ -177,9 +171,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-ful h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={getImage(project.expand.navigation_map, project.expand.navigation_map.media!)} alt={"Project navigation map"} />
+            <ResponsiveImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Research Charts & Bars"} />
           </div>
         </GridBox>
       </GridContainer>
@@ -196,7 +188,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white" className="h-[40vh] lg:h-full">
-              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill className="object-scale-down p-10" src={getImage(media, media.media!)} alt="Logo" />
+              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} className="p-10" />
             </GridBox>
           )}
         </GridContainer>
@@ -216,9 +208,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
-              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-                objectFit: 'contain'
-              }} src={getImage(media, media.media!)} alt={"Logo"} />
+              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} />
             </div>
           )}
         </GridBox>
@@ -227,17 +217,13 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-full relative">
-              <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-                objectFit: 'contain'
-              }} src={getImage(media, media.media!)} alt={"Logo"} />
+              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} />
             </div>
           )}
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-full relative">
-            <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={getImage(project.expand.font_family, project.expand.font_family.media!)} alt={"Logo"} />
+            <ResponsiveImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Research Charts & Bars"} />
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
@@ -262,9 +248,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
                   <Mockup>
-                    <Image sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-                      objectFit: 'cover'
-                    }} src={getImage(mockup, mockup.media!)} alt={"Mockups"} />
+                    <ResponsiveImage media={mockup} url={mockup.media!} alt={"Research Charts & Bars"} />
                   </Mockup>
                   <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                     <a href={`#mockups${index - 1}`} className="btn btn-lg btn-ghost btn-circle">❮</a>
