@@ -1,4 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    config.resolve.alias.encoding = false;
+    return config;
+  },
+  images: {
+    domains: ["127.0.0.1", "localhost"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
