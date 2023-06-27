@@ -113,7 +113,7 @@ export default async function Page({ params }: { params: { project: string } }) 
             <div key={research.id}>
               {research.expand.media.filter((media) => media.embed_src !== '').map((media) =>
                 <iframe key={media.id}
-                  className="lg:h-[35rem] h-full w-full" src={media.embed_src} allowFullScreen
+                  className="lg:h-[37rem] h-full w-full" src={media.embed_src} allowFullScreen
                   sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
                 />
               )}
@@ -198,8 +198,8 @@ export default async function Page({ params }: { params: { project: string } }) 
             </GridBox>
           )}
         </GridContainer>
-        <GridBox variant="no-padding" background="transparent">
-          <video muted className="absolute top-0 left-0 min-w-full min-h-full w-auto h-auto -translate-y-1/3 bg-cover bg-center overflow-hidden" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+        <GridBox variant="no-padding" background="transparent" className="items-center justify-center">
+          <video muted className="absolute z-10 -top-[30rem] w-auto min-w-[50%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
         </GridBox>
         <GridBox spotlight={true} background="gray">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Logo</h1>
