@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import ContactModal from '../components/ContactModal'
@@ -43,6 +44,7 @@ export default function RootLayout({
         <Providers>
           <ContactModal />
           {children}
+          <Analytics />
         </Providers>
       </body>
     </html>
