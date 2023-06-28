@@ -9,6 +9,8 @@ import ProjectBanner from "../components/ProjectBanner";
 import Spotlight, { SpotlightCard } from "../components/SpotlightCard";
 import pb from "../utils/pb.config";
 
+export const revalidate = 60
+
 export default async function Home() {
   const projects = await pb.collection('projects').getFullList({
     expand: 'affinity_map,brand_colors,colors,findings,font_family,high_fidelity_mock_ups,iconography,interactive_prototype,logo,navigation_map,persona,primary_research,secondary_research,user_flow,user_scenario'
