@@ -7,6 +7,7 @@ import GridContainer from "../../../components/GridContainer";
 import ImageCarousel from "../../../components/ImageCarousel";
 import Mockup from "../../../components/Mockup";
 import ResponsiveImage from "../../../components/ResponsiveImage";
+import { projectHasLogoVideo } from "../../../utils/array.utils";
 import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
@@ -138,7 +139,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <ResponsiveImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Research Charts & Bars"} />
+            <ResponsiveImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Persona of the project."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
@@ -151,14 +152,14 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <ResponsiveImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"Research Charts & Bars"} />
+            <ResponsiveImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"The projects affinity map."} />
           </div>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <ResponsiveImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"Research Charts & Bars"} />
+            <ResponsiveImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"User flow of the project."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
@@ -170,8 +171,8 @@ export default async function Page({ params }: { params: { project: string } }) 
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Navigation Map</h1>
         </GridBox>
         <GridBox variant="no-padding" background="white">
-          <div className="w-ful h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <ResponsiveImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Research Charts & Bars"} />
+          <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
+            <ResponsiveImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Projects navigation map."} />
           </div>
         </GridBox>
       </GridContainer>
@@ -184,17 +185,23 @@ export default async function Page({ params }: { params: { project: string } }) 
           <div dangerouslySetInnerHTML={{ __html: project.about }} />
         </GridBox>
       </GridContainer>
-      <GridContainer cols={3}>
+      <GridContainer cols={projectHasLogoVideo(project) ? 3 : 2}>
         <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
-            <GridBox key={media.id} variant="no-padding" background="white" className="h-[40vh] lg:h-full">
-              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} className="p-10" />
+            <GridBox key={media.id} variant="no-padding" background="white">
+              <div className="w-full h-[40vh] lg:h-full relative">
+                <ResponsiveImage media={media} url={media.media!} alt={"Image of the projects logotype."} className="p-10" />
+              </div>
             </GridBox>
           )}
         </GridContainer>
-        <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
-          <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[100%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
-        </GridBox>
+        {projectHasLogoVideo(project) ?
+          <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
+            <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+          </GridBox>
+          :
+          null
+        }
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Logo</h1>
           <div dangerouslySetInnerHTML={{ __html: project.expand.logo.content }} />
@@ -207,8 +214,8 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
-            <div key={media.id} className="w-full h-full relative">
-              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} />
+            <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
+              <ResponsiveImage media={media} url={media.media!} alt={"Showcasing the chosen brand colors for the project."} />
             </div>
           )}
         </GridBox>
@@ -216,14 +223,14 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={3}>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
-            <div key={media.id} className="w-full h-full relative">
-              <ResponsiveImage media={media} url={media.media!} alt={"Research Charts & Bars"} />
+            <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
+              <ResponsiveImage media={media} url={media.media!} alt={"The projects iconography."} />
             </div>
           )}
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
-          <div className="w-full h-full relative">
-            <ResponsiveImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Research Charts & Bars"} />
+          <div className="w-full h-[40vh] lg:h-full relative">
+            <ResponsiveImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Projects font family."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
@@ -248,7 +255,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
                   <Mockup>
-                    <ResponsiveImage media={mockup} url={mockup.media!} alt={"Research Charts & Bars"} />
+                    <ResponsiveImage media={mockup} url={mockup.media!} alt={"Figma mockup image."} />
                   </Mockup>
                   <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                     <a href={`#mockups${index - 1}`} className="btn btn-lg btn-ghost btn-circle">❮</a>
