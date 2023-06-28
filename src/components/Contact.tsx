@@ -3,6 +3,7 @@
 import { AiOutlineMail } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import GradientButton from './GradientButton';
 
 type Props = {}
 
@@ -15,8 +16,12 @@ const Contact = (props: Props) => {
         <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">Thank you for your email!</h1>
         :
         <>
-          <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">Tell me about your next project</h1>
-          <label htmlFor="contact_modal" className="btn border-gray-700 mt-12 z-20 rounded-none font-extralight" >Get in Touch <AiOutlineMail /></label>
+          <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">Ready to embark on your project journey?</h1>
+          <label htmlFor="contact_modal" >
+            <GradientButton className="mt-12">
+              Get in Touch <AiOutlineMail />
+            </GradientButton>
+          </label>
         </>
       }
     </div>

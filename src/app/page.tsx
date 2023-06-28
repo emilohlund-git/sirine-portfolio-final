@@ -4,7 +4,9 @@ import Cards from "../components/Cards";
 import Contact from "../components/Contact";
 import Divider from "../components/Divider";
 import FadeIn from "../components/FadeIn";
+import GradientButton from "../components/GradientButton";
 import ProjectBanner from "../components/ProjectBanner";
+import Spotlight, { SpotlightCard } from "../components/SpotlightCard";
 import pb from "../utils/pb.config";
 
 export default async function Home() {
@@ -23,7 +25,9 @@ export default async function Home() {
             <h1 className="font-extrabold text-4xl">Sirine <span className="font-light">Harzallah</span></h1>
             <h3 className="font-extrabold text-2xl">UI/UX <span className="font-light">Designer</span></h3>
           </div>
-          <a href="#projects" className="btn border-gray-700 mt-12 z-20 rounded-none font-light">Projects <AiOutlineProject /></a>
+          <GradientButton href="#projects" className="mt-12">
+            Projects <AiOutlineProject />
+          </GradientButton>
         </div>
       </FadeIn>
       <div className="lg:px-60">
@@ -33,7 +37,11 @@ export default async function Home() {
       {projects && projects.length > 0 && projects.map((project, index) => {
         return (
           <FadeIn key={project.id}>
-            <ProjectBanner project={project} imageAlignment={index % 2 === 0 ? 'left' : 'right'} href={`/projects/${project.id}`} />
+            <Spotlight>
+              <SpotlightCard>
+                <ProjectBanner project={project} imageAlignment={index % 2 === 0 ? 'left' : 'right'} href={`/projects/${project.id}`} />
+              </SpotlightCard>
+            </Spotlight>
           </FadeIn>
         )
       })}
