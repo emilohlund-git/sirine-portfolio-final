@@ -5,9 +5,11 @@ import FigmaPrototype from "../../../components/FigmaPrototype";
 import GridBox from "../../../components/GridBox";
 import GridContainer from "../../../components/GridContainer";
 import ImageCarousel from "../../../components/ImageCarousel";
+import LightboxImage from "../../../components/LightboxImage";
 import Mockup from "../../../components/Mockup";
 import ResponsiveImage from "../../../components/ResponsiveImage";
 import { projectHasLogoVideo } from "../../../utils/array.utils";
+import { truncate } from "../../../utils/general.utils";
 import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
@@ -88,7 +90,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               {research.expand.media.map((media) =>
                 <a key={media.id} className="link link-secondary text-lg w-fit flex items-center gap-x-1" target="_blank" href={getImage(media, media.media!)}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                  {media.media!}
+                  {truncate(media.media!, 25)}
                 </a>
               )}
             </div>
@@ -99,7 +101,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
                 <a key={media.id} className="link link-secondary text-lg w-fit flex items-center gap-x-1" target="_blank" href={getImage(media, media.media!)}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                  {media.media!}
+                  {truncate(media.media!, 25)}
                 </a>
               )}
             </div>
@@ -139,7 +141,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <ResponsiveImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Persona of the project."} />
+            <LightboxImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Persona of the project."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
@@ -152,14 +154,14 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <ResponsiveImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"The projects affinity map."} />
+            <LightboxImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"The projects affinity map."} />
           </div>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
-          <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <ResponsiveImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"User flow of the project."} />
+          <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
+            <LightboxImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"User flow of the project."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
@@ -172,7 +174,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <ResponsiveImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Projects navigation map."} />
+            <LightboxImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Projects navigation map."} />
           </div>
         </GridBox>
       </GridContainer>
@@ -190,7 +192,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white">
               <div className="w-full h-[40vh] lg:h-full relative">
-                <ResponsiveImage media={media} url={media.media!} alt={"Image of the projects logotype."} className="p-10" />
+                <LightboxImage media={media} url={media.media!} alt={"Image of the projects logotype."} className="p-10" />
               </div>
             </GridBox>
           )}
@@ -215,7 +217,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-              <ResponsiveImage media={media} url={media.media!} alt={"Showcasing the chosen brand colors for the project."} />
+              <LightboxImage media={media} url={media.media!} alt={"Showcasing the chosen brand colors for the project."} />
             </div>
           )}
         </GridBox>
@@ -224,13 +226,13 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-              <ResponsiveImage media={media} url={media.media!} alt={"The projects iconography."} />
+              <LightboxImage media={media} url={media.media!} alt={"The projects iconography."} />
             </div>
           )}
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <ResponsiveImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Projects font family."} />
+            <LightboxImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Projects font family."} />
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
@@ -250,7 +252,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         <GridBox variant="no-padding" background="white">
-          <div className="carousel rounded-none h-[50rem] relative w-full">
+          <div className="carousel rounded-none lg:h-[50rem] relative w-full">
             {project.expand.high_fidelity_mock_ups.map((mockup, index) => {
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
