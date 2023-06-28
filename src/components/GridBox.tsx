@@ -31,13 +31,13 @@ const GridBox: React.FC<Props> = ({ children, background = 'transparent', varian
       {spotlight ?
         <Spotlight>
           <SpotlightCard>
-            <div className={`relative overflow-hidden border-[1px] border-gray-900 w-full h-full flex gap-y-8 ${variant === 'no-padding' ? '' : 'py-20 px-10 lg:px-40'} flex-col ${getBackgroundColor()} ${getVariantStyles()} ${className}`}>
+            <div className={`relative overflow-hidden border-[1px] border-gray-900 w-full h-full flex ${variant === 'no-padding' ? '' : 'py-20 px-10 lg:px-40'} flex-col ${getBackgroundColor()} ${getVariantStyles()} ${className}`}>
               {children}
             </div>
           </SpotlightCard>
         </Spotlight>
         :
-        <div className={`relative overflow-hidden border-[1px] border-gray-900 w-full h-full flex gap-y-8 ${variant === 'no-padding' ? '' : 'py-20 px-10 lg:px-40'} flex-col ${getBackgroundColor()} ${getVariantStyles()} ${className}`}>
+        <div className={`relative overflow-hidden border-[1px] border-gray-900 w-full h-full flex ${variant === 'no-padding' ? '' : 'py-20 px-10 lg:px-40'} flex-col ${getBackgroundColor()} ${getVariantStyles()} ${className}`}>
           {children}
         </div>
       }

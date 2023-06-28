@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import { getImage } from "../utils/pb.utils";
 
@@ -9,14 +11,17 @@ type Props = {
 }
 
 const ResponsiveImage: React.FC<Props> = ({ media, url, alt, className }) => {
+  const imageSrc = getImage(media, url);
+
   return (
     <Image
-      className={className} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       fill
+      className={className}
       style={{
         objectFit: 'contain'
       }}
-      src={getImage(media, url)}
+      loading={'eager'}
+      src={imageSrc}
       alt={alt}
     />
   )

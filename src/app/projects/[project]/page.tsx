@@ -8,6 +8,7 @@ import ImageCarousel from "../../../components/ImageCarousel";
 import LightboxImage from "../../../components/LightboxImage";
 import Mockup from "../../../components/Mockup";
 import ResponsiveImage from "../../../components/ResponsiveImage";
+import Spinner from "../../../components/Spinner";
 import { projectHasLogoVideo } from "../../../utils/array.utils";
 import { truncate } from "../../../utils/general.utils";
 import { getImage } from "../../../utils/pb.utils";
@@ -53,6 +54,8 @@ async function getProject(projectId: string): Promise<ProjectType> {
 export default async function Page({ params }: { params: { project: string } }) {
   const project = await getProject(params.project);
 
+  if (!project) return <Spinner />
+
   return (
     <div className="flex flex-col items-center">
       <div style={{
@@ -84,7 +87,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox background="white">
           <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-base-300 via-base-100 to-base-200">Media</h1>
-          {project.expand.primary_research.map((research) =>
+          {project.expand.primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
             <div className="flex flex-col break-all max-w-full" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.map((media) =>
@@ -95,7 +98,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               )}
             </div>
           )}
-          {project.expand.secondary_research.filter((r) => r.expand.media.filter((m) => m.embed_src === '').length).map((research) =>
+          {project.expand.secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
             <div className="flex flex-col" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
@@ -116,9 +119,9 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox background="transparent" variant="no-padding">
           {project.expand.secondary_research.map((research) =>
             <div key={research.id}>
-              {research.expand.media.filter((media) => media.embed_src !== '').map((media) =>
+              {research.expand.media.filter((media) => media.type === 'embed').map((media) =>
                 <iframe key={media.id}
-                  className="lg:h-[37rem] h-[50vh] w-full" src={media.embed_src} allowFullScreen
+                  className="lg:h-[40rem] h-[50vh] w-full" src={media.embed_src} allowFullScreen
                   sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
                 />
               )}

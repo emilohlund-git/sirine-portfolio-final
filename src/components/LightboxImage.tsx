@@ -22,7 +22,8 @@ const LightboxImage: React.FC<Props> = ({ media, url, alt, className }) => {
       },
       buttons: {
         showNextButton: false,
-        showPrevButton: false
+        showPrevButton: false,
+        showAutoplayButton: false
       },
       thumbnails: {
         showThumbnails: false,
