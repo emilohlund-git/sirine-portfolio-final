@@ -1,17 +1,14 @@
 'use client'
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { SRLWrapper } from 'simple-react-lightbox';
-import ResponsiveImage from './ResponsiveImage';
 
 type Props = {
-  media: ProjectMedia;
-  url: string;
-  alt: string;
   className?: string;
+  children?: ReactNode;
 }
 
-const LightboxImage: React.FC<Props> = ({ media, url, alt, className }) => {
+const LightboxImage: React.FC<Props> = ({ children }) => {
   return (
     <SRLWrapper options={{
       settings: {
@@ -27,9 +24,9 @@ const LightboxImage: React.FC<Props> = ({ media, url, alt, className }) => {
       },
       thumbnails: {
         showThumbnails: false,
-      }
+      },
     }}>
-      <ResponsiveImage media={media} url={url} alt={alt} className={className} />
+      {children}
     </SRLWrapper>
   )
 }

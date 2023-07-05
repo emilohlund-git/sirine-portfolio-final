@@ -6,9 +6,7 @@ import GridBox from "../../../components/GridBox";
 import GridBoxHeader from "../../../components/GridBoxHeader";
 import GridContainer from "../../../components/GridContainer";
 import ImageCarousel from "../../../components/ImageCarousel";
-import LightboxImage from "../../../components/LightboxImage";
 import Mockup from "../../../components/Mockup";
-import ResponsiveImage from "../../../components/ResponsiveImage";
 import Spinner from "../../../components/Spinner";
 import { projectHasLogoVideo } from "../../../utils/array.utils";
 import { truncate } from "../../../utils/general.utils";
@@ -145,7 +143,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <LightboxImage media={project.expand.persona} url={project.expand.persona.media!} alt={"Persona of the project."} />
+            <ImageCarousel images={[getImage(project.expand.persona, project.expand.persona.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
@@ -158,14 +156,14 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <LightboxImage media={project.expand.affinity_map} url={project.expand.affinity_map.media!} alt={"The projects affinity map."} />
+            <ImageCarousel images={[getImage(project.expand.affinity_map, project.expand.affinity_map.media!)]} />
           </div>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-            <LightboxImage media={project.expand.user_flow} url={project.expand.user_flow.media!} alt={"User flow of the project."} />
+            <ImageCarousel images={[getImage(project.expand.user_flow, project.expand.user_flow.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
@@ -178,7 +176,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <LightboxImage media={project.expand.navigation_map} url={project.expand.navigation_map.media!} alt={"Projects navigation map."} />
+            <ImageCarousel images={[getImage(project.expand.navigation_map, project.expand.navigation_map.media!)]} />
           </div>
         </GridBox>
       </GridContainer>
@@ -196,7 +194,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white">
               <div className="w-full h-[40vh] lg:h-full relative">
-                <LightboxImage media={media} url={media.media!} alt={"Image of the projects logotype."} className="p-10" />
+                <ImageCarousel images={[getImage(media, media.media!)]} />
               </div>
             </GridBox>
           )}
@@ -221,7 +219,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
           {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-              <LightboxImage media={media} url={media.media!} alt={"Showcasing the chosen brand colors for the project."} />
+              <ImageCarousel images={[getImage(media, media.media!)]} />
             </div>
           )}
         </GridBox>
@@ -230,13 +228,13 @@ export default async function Page({ params }: { params: { project: string } }) 
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-              <LightboxImage media={media} url={media.media!} alt={"The projects iconography."} />
+              <ImageCarousel images={[getImage(media, media.media!)]} />
             </div>
           )}
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <LightboxImage media={project.expand.font_family} url={project.expand.font_family.media!} alt={"Projects font family."} />
+            <ImageCarousel images={[getImage(project.expand.font_family, project.expand.font_family.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
@@ -261,7 +259,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
                   <Mockup>
-                    <ResponsiveImage media={mockup} url={mockup.media!} alt={"Figma mockup image."} />
+                    <ImageCarousel images={[getImage(mockup, mockup.media!)]} />
                   </Mockup>
                   <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                     <a href={`#mockups${index - 1}`} className="btn btn-lg btn-ghost btn-circle">❮</a>
