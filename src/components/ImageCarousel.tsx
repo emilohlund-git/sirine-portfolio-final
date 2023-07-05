@@ -3,12 +3,15 @@
 import Image from 'next/image';
 import React from 'react';
 import LightboxImage from './LightboxImage';
+import Spinner from './Spinner';
 
 type Props = {
   images?: string[];
 }
 
 const ImageCarousel: React.FC<Props> = ({ images }) => {
+  if (!images) return <Spinner />
+
   return (
     <div className="carousel rounded-none h-full w-full bg-[#e5e5e9]">
       {images && images.length > 1 ? images.map((image, index) => {
