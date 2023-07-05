@@ -208,7 +208,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={projectHasLogoVideo(project) ? 3 : 2}>
         <GridContainer cols={logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
           {logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
-            <GridBox key={media.id} variant="no-padding" background="white">
+            <GridBox key={media.id} variant="no-padding" background="white" className="p-10">
               <div className="w-full h-[40vh] lg:h-full relative">
                 <ImageCarousel images={[getImage(media, media.media!)]} />
               </div>
@@ -216,8 +216,8 @@ export default async function Page({ params }: { params: { project: string } }) 
           )}
         </GridContainer>
         {projectHasLogoVideo(project) ?
-          <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
-            <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(logo.expand.media.find((media) => media.type === 'video'), logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+          <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[100vh] w-[100vw] lg:h-full lg:w-full">
+            <video muted className="lg:absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(logo.expand.media.find((media) => media.type === 'video'), logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
           </GridBox>
           :
           null
