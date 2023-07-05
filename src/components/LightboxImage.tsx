@@ -29,9 +29,7 @@ const LightboxImage: React.FC<Props> = ({ media, url, alt, className }) => {
         showThumbnails: false,
       }
     }}>
-      <div className="cursor-zoom-in">
-        <ResponsiveImage media={media} url={url} alt={alt} className={className} />
-      </div>
+      <ResponsiveImage media={media} url={url} alt={alt} className={className} />
     </SRLWrapper>
   )
 }

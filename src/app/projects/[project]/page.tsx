@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import FigmaPrototype from "../../../components/FigmaPrototype";
 import GridBox from "../../../components/GridBox";
+import GridBoxHeader from "../../../components/GridBoxHeader";
 import GridContainer from "../../../components/GridContainer";
 import ImageCarousel from "../../../components/ImageCarousel";
 import LightboxImage from "../../../components/LightboxImage";
@@ -76,17 +77,17 @@ export default async function Page({ params }: { params: { project: string } }) 
       </div>
       <GridContainer cols={2}>
         <GridBox background='transparent'>
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Problem</h1>
+          <GridBoxHeader>Problem</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.problem }} />
         </GridBox>
         <GridBox spotlight={true} background='gray'>
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Potential Solution</h1>
+          <GridBoxHeader>Potential Solution</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.potential_solution }} />
         </GridBox>
       </GridContainer >
       <GridContainer cols={2}>
         <GridBox background="white">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-base-300 via-base-100 to-base-200">Media</h1>
+          <GridBoxHeader color='gray'>Media</GridBoxHeader>
           {project.expand.primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
             <div className="flex flex-col break-all max-w-full" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
@@ -111,7 +112,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           )}
         </GridBox>
         <GridBox background="transparent">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Research</h1>
+          <GridBoxHeader>Research</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
         </GridBox>
       </GridContainer>
@@ -129,12 +130,12 @@ export default async function Page({ params }: { params: { project: string } }) 
           )}
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-indigo-200 to-purple-200">{project.slogan}</h1>
+          <GridBoxHeader color="gradient">{project.slogan}</GridBoxHeader>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox spotlight={true} background="gray">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Key Insights</h1>
+          <GridBoxHeader>Key Insights</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
         </GridBox>
         <GridBox variant="no-padding" background="transparent">
@@ -148,12 +149,12 @@ export default async function Page({ params }: { params: { project: string } }) 
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Persona</h1>
+          <GridBoxHeader>Persona</GridBoxHeader>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Affinity Map</h1>
+          <GridBoxHeader>Affinity Map</GridBoxHeader>
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
@@ -168,12 +169,12 @@ export default async function Page({ params }: { params: { project: string } }) 
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">User Flow</h1>
+          <GridBoxHeader>User Flow</GridBoxHeader>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Navigation Map</h1>
+          <GridBoxHeader>Navigation Map</GridBoxHeader>
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
@@ -183,10 +184,10 @@ export default async function Page({ params }: { params: { project: string } }) 
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="center" background="white">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-base-300 via-base-100 to-base-200">Brand Guidelines</h1>
+          <GridBoxHeader color='gray'>Brand Guidelines</GridBoxHeader>
         </GridBox>
         <GridBox background="transparent">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">About</h1>
+          <GridBoxHeader>About</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.about }} />
         </GridBox>
       </GridContainer>
@@ -208,13 +209,13 @@ export default async function Page({ params }: { params: { project: string } }) 
           null
         }
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Logo</h1>
+          <GridBoxHeader>Logo</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.expand.logo.content }} />
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox spotlight={true} background="gray">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Brand colors</h1>
+          <GridBoxHeader>Brand Colors</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.expand.brand_colors.content }} />
         </GridBox>
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
@@ -239,7 +240,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
-          <h1 className="font-extrabold text-5xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">Iconography & Font Family</h1>
+          <GridBoxHeader>Iconography & Font Family</GridBoxHeader>
           <div dangerouslySetInnerHTML={{ __html: project.expand.iconography[0].content }} />
         </GridBox>
       </GridContainer>
@@ -250,7 +251,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         backgroundPosition: 'center'
       }} id="projects" className="grid grid-cols-1 lg:grid-cols-1 h-[100vh] lg:h-[50vh] w-full">
         <GridBox variant="center" background='transparent' className="bg-black bg-opacity-50">
-          <h1 className="font-extrabold text-[3rem] lg:text-[5rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">Mockups &<br /> Interactive Prototype</h1>
+          <GridBoxHeader color="white" size="large">Mockups &<br /> Interactive Prototype</GridBoxHeader>
         </GridBox>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">

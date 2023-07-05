@@ -20,7 +20,8 @@ const ResponsiveImage: React.FC<Props> = ({ media, url, alt, className }) => {
       style={{
         objectFit: 'contain'
       }}
-      loading={'eager'}
+      unoptimized={true}
+      onError={(e) => console.error(e)}
       src={imageSrc}
       alt={alt}
     />

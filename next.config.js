@@ -7,6 +7,7 @@ const nextConfig = {
   },
   images: {
     domains: ["127.0.0.1", "localhost", "sirine.fly.dev"],
+    unoptimized: true,
   },
 };
 
