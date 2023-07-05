@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import LightboxImage from './LightboxImage';
 import Spinner from './Spinner';
 
@@ -10,6 +10,8 @@ type Props = {
 }
 
 const ImageCarousel: React.FC<Props> = ({ images }) => {
+  const [loaded, setLoaded] = useState(false);
+
   if (!images) return <Spinner />
 
   return (
@@ -27,11 +29,15 @@ const ImageCarousel: React.FC<Props> = ({ images }) => {
           </div>
         )
       })
-        : <LightboxImage>
-          <Image className="cursor-zoom-in" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-            objectFit: 'contain'
-          }} src={images[0]} alt={"Carousel item for Key Insights"} />
-        </LightboxImage>
+        :
+        <div className="relative w-full h-full">
+          <LightboxImage>
+            {!loaded ? <Spinner className="absolute left-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md" /> : null}
+            <Image onLoad={() => setLoaded(true)} className="cursor-zoom-in z-0" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
+              objectFit: 'contain'
+            }} src={images[0]} alt={"Carousel item for Key Insights"} />
+          </LightboxImage>
+        </div>
       }
     </div>
   )

@@ -31,7 +31,7 @@ export const Card: React.FC<{
 
   return (
     <FadeIn>
-      <Spotlight>
+      <Spotlight className="w-full h-full">
         <SpotlightCard>
           <div className="w-full h-full">
             <div className="group relative w-full h-full shadow-lg overflow-hidden bg-gray-800 p-[1px] transition-all duration-600 ease-in-out bg-gradient-to-r hover:from-indigo-700 hover:via-purple-700 hover:to-pink-700">

@@ -32,7 +32,7 @@ export default async function Home() {
           </GradientButton>
         </div>
       </FadeIn>
-      <div className="lg:px-60">
+      <div className="lg:px-60 w-full">
         <Cards />
       </div>
       <Divider />

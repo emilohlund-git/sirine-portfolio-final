@@ -9,7 +9,7 @@ type Props = {}
 
 const Cards = (props: Props) => {
   return (
-    <div className="p-4 lg:p-4 grid grid-cols-1 lg:grid-cols-3 place-items-center gap-4">
+    <div className="p-4 lg:p-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 place-items-center gap-4 w-full">
       <Card text='UI/UX'>
         <div className="flex flex-col self-end gap-y-4 max-w-[80%]">
           <DesignIcon />

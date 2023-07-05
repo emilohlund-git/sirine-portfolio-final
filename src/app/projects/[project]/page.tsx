@@ -55,6 +55,22 @@ export default async function Page({ params }: { params: { project: string } }) 
 
   if (!project) return <Spinner />
 
+  const {
+    findings,
+    primary_research,
+    secondary_research,
+    persona,
+    affinity_map,
+    user_flow,
+    navigation_map,
+    logo,
+    iconography,
+    font_family,
+    brand_colors,
+    high_fidelity_mock_ups,
+    interactive_prototype
+  } = project.expand;
+
   return (
     <div className="flex flex-col items-center">
       <div style={{
@@ -86,7 +102,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={2}>
         <GridBox background="white">
           <GridBoxHeader color='gray'>Media</GridBoxHeader>
-          {project.expand.primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
+          {primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
             <div className="flex flex-col break-all max-w-full" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.map((media) =>
@@ -97,7 +113,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               )}
             </div>
           )}
-          {project.expand.secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
+          {secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
             <div className="flex flex-col" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
@@ -116,7 +132,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox background="transparent" variant="no-padding">
-          {project.expand.secondary_research.map((research) =>
+          {secondary_research.map((research) =>
             <div key={research.id}>
               {research.expand.media.filter((media) => media.type === 'embed').map((media) =>
                 <iframe key={media.id}
@@ -137,13 +153,13 @@ export default async function Page({ params }: { params: { project: string } }) 
           <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
         </GridBox>
         <GridBox variant="no-padding" background="transparent">
-          <ImageCarousel images={project.expand.findings.map((finding) => getImage(finding, finding.media!))} />
+          <ImageCarousel images={findings.map((finding) => getImage(finding, finding.media!))} />
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <ImageCarousel images={[getImage(project.expand.persona, project.expand.persona.media!)]} />
+            <ImageCarousel images={[getImage(persona, persona.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
@@ -156,14 +172,14 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-            <ImageCarousel images={[getImage(project.expand.affinity_map, project.expand.affinity_map.media!)]} />
+            <ImageCarousel images={[getImage(affinity_map, affinity_map.media!)]} />
           </div>
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-            <ImageCarousel images={[getImage(project.expand.user_flow, project.expand.user_flow.media!)]} />
+            <ImageCarousel images={[getImage(user_flow, user_flow.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} position="end" variant="center" background="gray">
@@ -176,7 +192,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white">
           <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-            <ImageCarousel images={[getImage(project.expand.navigation_map, project.expand.navigation_map.media!)]} />
+            <ImageCarousel images={[getImage(navigation_map, navigation_map.media!)]} />
           </div>
         </GridBox>
       </GridContainer>
@@ -190,8 +206,8 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={projectHasLogoVideo(project) ? 3 : 2}>
-        <GridContainer cols={project.expand.logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
-          {project.expand.logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
+        <GridContainer cols={logo.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
+          {logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white">
               <div className="w-full h-[40vh] lg:h-full relative">
                 <ImageCarousel images={[getImage(media, media.media!)]} />
@@ -201,23 +217,23 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridContainer>
         {projectHasLogoVideo(project) ?
           <GridBox variant="no-padding" background="transparent" className="items-center justify-center h-[60vh] lg:h-full">
-            <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(project.expand.logo.expand.media.find((media) => media.type === 'video'), project.expand.logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
+            <video muted className="absolute z-10 w-auto min-w-[150%] min-h-[50%] max-w-[400%]" loop autoPlay src={`${getImage(logo.expand.media.find((media) => media.type === 'video'), logo.expand.media.find((media) => media.type === 'video')!.media!)}`} />
           </GridBox>
           :
           null
         }
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <GridBoxHeader>Logo</GridBoxHeader>
-          <div dangerouslySetInnerHTML={{ __html: project.expand.logo.content }} />
+          <div dangerouslySetInnerHTML={{ __html: logo.content }} />
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
         <GridBox spotlight={true} background="gray">
           <GridBoxHeader>Brand Colors</GridBoxHeader>
-          <div dangerouslySetInnerHTML={{ __html: project.expand.brand_colors.content }} />
+          <div dangerouslySetInnerHTML={{ __html: brand_colors.content }} />
         </GridBox>
         <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
-          {project.expand.brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
+          {brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
               <ImageCarousel images={[getImage(media, media.media!)]} />
             </div>
@@ -226,7 +242,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       </GridContainer>
       <GridContainer cols={3}>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
-          {project.expand.iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
+          {iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
             <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
               <ImageCarousel images={[getImage(media, media.media!)]} />
             </div>
@@ -234,12 +250,12 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
           <div className="w-full h-[40vh] lg:h-full relative">
-            <ImageCarousel images={[getImage(project.expand.font_family, project.expand.font_family.media!)]} />
+            <ImageCarousel images={[getImage(font_family, font_family.media!)]} />
           </div>
         </GridBox>
         <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
           <GridBoxHeader>Iconography & Font Family</GridBoxHeader>
-          <div dangerouslySetInnerHTML={{ __html: project.expand.iconography[0].content }} />
+          <div dangerouslySetInnerHTML={{ __html: iconography[0].content }} />
         </GridBox>
       </GridContainer>
       <div style={{
@@ -255,7 +271,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
         <GridBox variant="no-padding" background="white">
           <div className="carousel rounded-none lg:h-[50rem] relative w-full">
-            {project.expand.high_fidelity_mock_ups.map((mockup, index) => {
+            {high_fidelity_mock_ups.map((mockup, index) => {
               return (
                 <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
                   <Mockup>
@@ -272,7 +288,7 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
         <GridBox variant="no-padding" background="gray">
           <div className="relative w-full h-full">
-            <FigmaPrototype url={project.expand.interactive_prototype.embed_src} />
+            <FigmaPrototype url={interactive_prototype.embed_src} />
           </div>
         </GridBox>
       </div>

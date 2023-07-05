@@ -10,6 +10,7 @@ type Props = {
 const FadeIn: React.FC<Props> = ({ children }) => {
   return (
     <motion.div
+      className="w-full h-full"
       initial={{
         y: 20,
         opacity: 0
