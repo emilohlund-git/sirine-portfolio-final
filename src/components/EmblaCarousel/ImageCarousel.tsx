@@ -81,9 +81,9 @@ const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size =
                 {images.map((image, index) => {
                   return (
                     <LazyLoadImage key={index}
-                      index={index}
-                      imgSrc={image}
-                      inView={slidesInView.indexOf(index) > -1} />
+                      src={image}
+                      alt="any"
+                    />
                   )
                 })}
               </div>

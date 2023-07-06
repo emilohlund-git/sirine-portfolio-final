@@ -25,7 +25,6 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
     iconography,
     font_family,
     brand_colors,
-    high_fidelity_mock_ups,
     interactive_prototype
   } = project.expand;
 
@@ -210,7 +209,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
         </GridContainer>
       }
-      {high_fidelity_mock_ups && interactive_prototype &&
+      {interactive_prototype &&
         <>
           <div style={{
             backgroundImage: `url('${getImage(project, project.cover_image)}')`,
@@ -223,9 +222,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             </GridBox>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
-            <GridBox variant="no-padding" background="white">
+            <GridBox variant="no-padding" background="transparent">
               <div className="w-full h-[80vh] lg:h-full relative">
-                <ImageCarousel size='full' mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
+                <ImageCarousel size='full' mockup={true} images={project.high_fidelity_mock_ups.map((mockup) => getImage(project, mockup!))} />
               </div>
             </GridBox>
             <GridBox variant="no-padding" background="gray">
@@ -240,7 +239,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={3}>
           <GridBox variant="no-padding" background="transparent" className="col-span-2">
             <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel className="w-[60vw] h-[50vh]" size="large" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
+              <ImageCarousel className="w-full h-full" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
             </div>
           </GridBox>
           <GridBox background="transparent">

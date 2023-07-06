@@ -1,39 +1,33 @@
-import React, { useCallback, useState } from 'react'
+'use client'
+
+import Image, { ImageProps } from 'next/image'
+import React, { useState } from 'react'
 import LightboxImage from './LightboxImage'
 import Spinner from './Spinner'
 
-type PropType = {
-  imgSrc: string
-  inView: boolean
-  index: number
-}
-
-export const LazyLoadImage: React.FC<PropType> = (props) => {
-  const { imgSrc, inView, index } = props
+export const LazyLoadImage: React.FC<ImageProps> = ({ className, onLoad, alt, ...props }) => {
   const [hasLoaded, setHasLoaded] = useState(false)
 
-  const setLoaded = useCallback(() => {
-    if (inView) setHasLoaded(true)
-  }, [inView, setHasLoaded])
+  const onLoadCallback = (e: any) => {
+    setHasLoaded(true)
+    typeof onLoad === "function" && onLoad(e);
+  }
 
   return (
     <div className="embla__slide">
       <div
-        className={'relative embla__lazy-load'.concat(
+        className={'relative h-[60vh] embla__lazy-load'.concat(
           hasLoaded ? ' embla__lazy-load--has-loaded' : '',
         )}
       >
-        {!hasLoaded && <Spinner className="absolute top-1/2 -translate-y-1/2 z-[100] filter backdrop-grayscale backdrop-contrast-50 backdrop-saturate-50 b" />}
-        <div className="embla__slide__number">
-          <span>{index + 1}</span>
-        </div>
+        {!hasLoaded && <Spinner className="absolute top-1/2 -translate-y-1/2 z-[100] filter backdrop-grayscale backdrop-contrast-50 backdrop-saturate-50 backdrop-opacity-20" />}
         <LightboxImage>
-          <img
-            className="embla__slide__img embla__lazy-load__img"
-            onLoad={setLoaded}
-            src={imgSrc}
-            alt="Your alt text"
-            data-src={imgSrc}
+          <Image
+            fill
+            className={`embla__slide__img embla__lazy-load__img h-[60vh] ${className}`}
+            alt={alt}
+            onLoad={onLoadCallback}
+            {...props}
           />
         </LightboxImage>
       </div>
