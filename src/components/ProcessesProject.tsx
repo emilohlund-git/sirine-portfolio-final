@@ -1,5 +1,5 @@
 import React from 'react'
-import { projectHasLogoVideo, projectMediaArrayWithEmbed } from '../utils/array.utils'
+import { projectHasLogoVideo, projectMediaArrayHasEmbed, projectMediaArrayWithEmbed } from '../utils/array.utils'
 import { getImage } from '../utils/pb.utils'
 import ImageCarousel from './EmblaCarousel/ImageCarousel'
 import FigmaPrototype from './FigmaPrototype'
@@ -43,10 +43,10 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               <div dangerouslySetInnerHTML={{ __html: project.potential_solution }} />
             </GridBox>
           </GridContainer >
-          <GridContainer cols={primary_research?.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 2 : 1}>
+          <GridContainer cols={2}>
             <GridBox spotlight={true} background="gray">
               <GridBoxHeader>Research</GridBoxHeader>
-              <div className={`${primary_research?.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 'w-full' : 'lg:w-[50%]'}`} dangerouslySetInnerHTML={{ __html: project.research_goals }} />
+              <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
             </GridBox>
           </GridContainer>
         </>
@@ -71,9 +71,10 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               </div>
             )}
           </GridBox>
-          <GridBox spotlight={true} variant="center" position="end" background="gray">
-            <GridBoxHeader color="gradient">{project.slogan}</GridBoxHeader>
-          </GridBox>
+          {projectMediaArrayHasEmbed(secondary_research) &&
+            <GridBox spotlight={true} variant="center" position="end" background="gray">
+            </GridBox>
+          }
         </GridContainer>
       }
       {findings &&
@@ -91,22 +92,24 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative">
-              <ImageCarousel images={[getImage(persona, persona?.media!)]} />
+              <ImageCarousel images={persona.expand.media?.map((pm) => getImage(pm, pm?.media!))} />
             </div>
           </GridBox>
-          <GridBox spotlight={true} variant="center" position="end" background="gray" className="order-first">
+          <GridBox spotlight={true} background="gray" className="order-first">
             <GridBoxHeader>Persona</GridBoxHeader>
+            <div dangerouslySetInnerHTML={{ __html: persona.content }} />
           </GridBox>
         </GridContainer>
       }
       {affinity_map &&
         <GridContainer cols={2}>
-          <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
+          <GridBox spotlight={true} background="gray" className="items-center lg:items-start">
             <GridBoxHeader>Affinity Map</GridBoxHeader>
+            <div dangerouslySetInnerHTML={{ __html: affinity_map.content }} />
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-              <ImageCarousel images={[getImage(affinity_map, affinity_map.media!)]} />
+              <ImageCarousel images={affinity_map.expand.media?.map((amm) => getImage(amm, amm.media!))} />
             </div>
           </GridBox>
         </GridContainer>
@@ -115,22 +118,24 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-              <ImageCarousel images={[getImage(user_flow, user_flow.media!)]} />
+              <ImageCarousel images={user_flow.expand.media?.map((ufm) => getImage(ufm, ufm.media!))} />
             </div>
           </GridBox>
-          <GridBox spotlight={true} position="end" variant="center" background="gray">
+          <GridBox spotlight={true} background="gray">
             <GridBoxHeader>User Flow</GridBoxHeader>
+            <div dangerouslySetInnerHTML={{ __html: user_flow.content }} />
           </GridBox>
         </GridContainer>
       }
       {navigation_map &&
         <GridContainer cols={2}>
-          <GridBox spotlight={true} variant="center" background="gray" className="items-center lg:items-start">
+          <GridBox spotlight={true} background="gray" className="items-center lg:items-start">
             <GridBoxHeader>Navigation Map</GridBoxHeader>
+            <div dangerouslySetInnerHTML={{ __html: navigation_map.content }} />
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-              <ImageCarousel images={[getImage(navigation_map, navigation_map.media!)]} />
+              <ImageCarousel images={navigation_map.expand.media?.map((nm) => getImage(nm, nm.media!))} />
             </div>
           </GridBox>
         </GridContainer>
@@ -219,7 +224,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
             <GridBox variant="no-padding" background="white">
-              <div className="w-full h-full lg:h-full relative">
+              <div className="w-full h-[80vh] lg:h-full relative">
                 <ImageCarousel size='full' mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
               </div>
             </GridBox>

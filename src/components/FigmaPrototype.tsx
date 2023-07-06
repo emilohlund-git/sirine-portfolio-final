@@ -13,7 +13,7 @@ const FigmaPrototype: React.FC<Props> = ({ url }) => {
   return (
     <>
       <iframe onLoad={() => setLoading(false)} style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
-        className="h-[50rem] w-full object-contain" src={url + '&hide-ui=1'} allowFullScreen />
+        className="h-[80vh] lg:h-[50rem] w-full object-contain" src={url + '&hide-ui=1'} allowFullScreen />
       {loading ?
         <div className="absolute top-0 h-full w-full">
           <Spinner />

@@ -37,7 +37,7 @@ interface ProjectType extends DatabaseBase {
   slogan: string;
   research_goals: string;
   expand: {
-    affinity_map: ProjectMedia;
+    affinity_map: ProjectMediaContent;
     brand_colors: ProjectMediaContent;
     colors: {
       collectionId: string;
@@ -53,11 +53,11 @@ interface ProjectType extends DatabaseBase {
     iconography: ProjectMediaContent[];
     interactive_prototype: ProjectMedia;
     logo: ProjectMediaContent;
-    navigation_map: ProjectMedia;
-    persona: ProjectMedia;
+    navigation_map: ProjectMediaContent;
+    persona: ProjectMediaContent;
     primary_research: ProjectMediaContent[];
     secondary_research: ProjectMediaContent[];
-    user_flow: ProjectMedia;
-    user_scenario: ProjectMedia;
+    user_flow: ProjectMediaContent;
+    user_scenario: ProjectMediaContent;
   }
 }

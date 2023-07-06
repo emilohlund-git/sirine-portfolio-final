@@ -34,7 +34,14 @@ export const revalidate = 60
 
 async function getProject(projectId: string): Promise<ProjectType> {
   const res = await pb.collection('projects').getOne(projectId, {
-    expand: 'affinity_map,brand_colors,colors,findings,font_family,high_fidelity_mock_ups,iconography,interactive_prototype,logo,navigation_map,persona,primary_research,secondary_research,user_flow,user_scenario,primary_research.media,secondary_research.media,logo.media,brand_colors.media,iconography.media'
+    expand: 'affinity_map,brand_colors,colors,findings\
+    ,font_family,high_fidelity_mock_ups,iconography\
+    ,interactive_prototype,logo,navigation_map,persona\
+    ,primary_research,secondary_research,user_flow\
+    ,user_scenario,primary_research.media,secondary_research\
+    .media,logo.media,brand_colors.media,iconography.media\
+    ,persona.media,affinity_map.media,user_flow.media\
+    ,navigation_map.media'
   }) as ProjectType;
 
   if (!res) {
