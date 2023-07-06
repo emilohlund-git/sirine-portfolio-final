@@ -117,10 +117,10 @@
   height: 4rem;
 }
 .embla__button--prev {
-  left: 1.6rem;
+  left: 1rem;
 }
 .embla__button--next {
-  right: 1.6rem;
+  right: 1rem;
 }
 .embla__button:disabled {
   opacity: 0.3;

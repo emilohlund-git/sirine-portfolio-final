@@ -66,7 +66,7 @@ interface ProjectType extends DatabaseBase {
       title_color: string;
     }
     findings: ProjectMedia[];
-    font_family: ProjectMedia;
+    font_family: ProjectMedia[];
     high_fidelity_mock_ups: ProjectMedia[];
     iconography: ProjectMediaContent[];
     interactive_prototype: ProjectMedia;
