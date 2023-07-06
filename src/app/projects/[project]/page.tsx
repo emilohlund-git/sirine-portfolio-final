@@ -1,12 +1,11 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
 import Link from "next/link";
+import ImageCarousel from "../../../components/EmblaCarousel/ImageCarousel";
 import FigmaPrototype from "../../../components/FigmaPrototype";
 import GridBox from "../../../components/GridBox";
 import GridBoxHeader from "../../../components/GridBoxHeader";
 import GridContainer from "../../../components/GridContainer";
-import ImageCarousel from "../../../components/ImageCarousel";
-import Mockup from "../../../components/Mockup";
 import Spinner from "../../../components/Spinner";
 import { projectHasLogoVideo } from "../../../utils/array.utils";
 import { truncate } from "../../../utils/general.utils";
@@ -270,21 +269,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         <GridBox variant="no-padding" background="white">
-          <div className="carousel rounded-none lg:h-[50rem] relative w-full">
-            {high_fidelity_mock_ups.map((mockup, index) => {
-              return (
-                <div id={`mockups${index}`} key={mockup.id} className="carousel-item w-full h-full flex items-center justify-center relative">
-                  <Mockup>
-                    <ImageCarousel images={[getImage(mockup, mockup.media!)]} />
-                  </Mockup>
-                  <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <a href={`#mockups${index - 1}`} className="btn btn-lg btn-ghost btn-circle">❮</a>
-                    <a href={`#mockups${index + 1}`} className="btn btn-lg btn-ghost btn-circle">❯</a>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <ImageCarousel mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
         </GridBox>
         <GridBox variant="no-padding" background="gray">
           <div className="relative w-full h-full">
