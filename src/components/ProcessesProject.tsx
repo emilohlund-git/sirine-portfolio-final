@@ -219,7 +219,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
             <GridBox variant="no-padding" background="white">
-              <ImageCarousel size='full' mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
+              <div className="w-full h-full lg:h-full relative">
+                <ImageCarousel size='full' mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
+              </div>
             </GridBox>
             <GridBox variant="no-padding" background="gray">
               <div className="relative w-full h-full">

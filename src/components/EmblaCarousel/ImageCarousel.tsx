@@ -1,12 +1,12 @@
 'use client'
 
-import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
+import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { LazyLoadImage } from '../LazyLoadImage';
 import LightboxImage from '../LightboxImage';
 import Spinner from '../Spinner';
-import { DotButton, NextButton, PrevButton } from './EmblaCarouselButtons';
+import { Thumb } from './EmblaThumbButton';
 import './embla.css';
 
 type Props = {
@@ -18,43 +18,33 @@ type Props = {
 
 const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large', className }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
+
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+  const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
+    containScroll: 'keepSnaps',
+    dragFree: true,
+  })
 
-  const scrollPrev = useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi],
-  )
-  const scrollNext = useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi],
-  )
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi],
+  const onThumbClick = useCallback(
+    (index: number) => {
+      if (!emblaApi || !emblaThumbsApi) return
+      emblaApi.scrollTo(index)
+    },
+    [emblaApi, emblaThumbsApi],
   )
 
-  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-    setScrollSnaps(emblaApi.scrollSnapList())
-  }, [])
-
-  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+  const onSelect = useCallback(() => {
+    if (!emblaApi || !emblaThumbsApi) return
     setSelectedIndex(emblaApi.selectedScrollSnap())
-    setPrevBtnEnabled(emblaApi.canScrollPrev())
-    setNextBtnEnabled(emblaApi.canScrollNext())
-  }, [])
+    emblaThumbsApi.scrollTo(emblaApi.selectedScrollSnap())
+  }, [emblaApi, emblaThumbsApi, setSelectedIndex])
 
   useEffect(() => {
     if (!emblaApi) return
-
-    onInit(emblaApi)
-    onSelect(emblaApi)
-    emblaApi.on('reInit', onInit)
-    emblaApi.on('reInit', onSelect)
+    onSelect()
     emblaApi.on('select', onSelect)
-  }, [emblaApi, onInit, onSelect])
+    emblaApi.on('reInit', onSelect)
+  }, [emblaApi, onSelect])
 
   const [loaded, setLoaded] = useState(false);
 
@@ -74,18 +64,22 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
                 })}
               </div>
             </div>
-            <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-            <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
           </div>
 
-          <div className="embla__dots">
-            {scrollSnaps.map((_, index) => (
-              <DotButton
-                key={index}
-                selected={index === selectedIndex}
-                onClick={() => scrollTo(index)}
-              />
-            ))}
+          <div className="embla-thumbs">
+            <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
+              <div className="embla-thumbs__container">
+                {images.map((img, index) => (
+                  <Thumb
+                    onClick={() => onThumbClick(index)}
+                    selected={index === selectedIndex}
+                    index={index}
+                    imgSrc={img}
+                    key={index}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </>
         :
