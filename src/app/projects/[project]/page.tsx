@@ -8,7 +8,7 @@ import GridBoxHeader from "../../../components/GridBoxHeader";
 import GridContainer from "../../../components/GridContainer";
 import ProjectMedia from "../../../components/ProjectMedia";
 import Spinner from "../../../components/Spinner";
-import { projectHasLogoVideo } from "../../../utils/array.utils";
+import { projectHasLogoVideo, projectMediaContentHasPDF } from "../../../utils/array.utils";
 import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
@@ -105,31 +105,49 @@ export default async function Page({ params }: { params: { project: string } }) 
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>
-        <GridBox background="white">
-          <GridBoxHeader color="gray">Primary Research</GridBoxHeader>
-          {primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
-            <div className="flex flex-col break-all max-w-full" key={research.id}>
-              <h4 className="font-light text-2xl mb-2">{research.content}</h4>
-              {research.expand.media.filter((m) => m.type === 'image').length > 0 &&
-                <ImageCarousel key={research.id} images={research.expand.media.map((m) => getImage(m, m.media!))} />
-              }
-              {research.expand.media.map((m) =>
-                m.type === 'pdf' && <ProjectMedia key={m.id} media={m} />
-              )}
-            </div>
-          )}
-        </GridBox>
-        <GridBox background="white">
-          <GridBoxHeader color="gray">Secondary Research</GridBoxHeader>
-          {secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
-            <div className="flex flex-col" key={research.id}>
-              <h4 className="font-light text-2xl mb-2">{research.content}</h4>
-              {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
-                <ProjectMedia key={media.id} media={media} />
-              )}
-            </div>
-          )}
-        </GridBox>
+        <GridContainer cols={1}>
+          <GridBox background="white" className="lg:h-[20rem]">
+            <GridBoxHeader color="gray">Primary Research</GridBoxHeader>
+            {primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
+              <div className="flex flex-col break-all max-w-full" key={research.id}>
+                <h4 className="font-light text-2xl mb-2">{research.content}</h4>
+              </div>
+            )}
+          </GridBox>
+          <GridBox variant={projectMediaContentHasPDF(primary_research) ? 'default' : 'no-padding'} background="white">
+            {primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
+              <>
+                {research.expand.media.filter((m) => m.type === 'image').length > 0 &&
+                  <ImageCarousel key={research.id} images={research.expand.media.map((m) => getImage(m, m.media!))} />
+                }
+                {research.expand.media.map((m) =>
+                  m.type === 'pdf' && <ProjectMedia key={m.id} media={m} />
+                )}
+              </>
+            )}
+          </GridBox>
+        </GridContainer>
+        <GridContainer cols={1}>
+          <GridBox background="white" className="lg:h-[20rem]">
+            <GridBoxHeader color="gray">Secondary Research</GridBoxHeader>
+            {secondary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
+              <div className="flex flex-col break-all max-w-full" key={research.id}>
+                <h4 className="font-light text-2xl mb-2">{research.content}</h4>
+              </div>
+            )}
+          </GridBox>
+          <GridBox variant={projectMediaContentHasPDF(secondary_research) ? 'default' : 'no-padding'} background="white" className="lg:h-[45rem]">
+            {secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
+              <>
+                {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
+                  <div key={media.id} className="w-full h-[70vh] lg:h-full relative">
+                    <ProjectMedia size={'full'} media={media} />
+                  </div>
+                )}
+              </>
+            )}
+          </GridBox>
+        </GridContainer>
       </GridContainer>
       <GridContainer cols={secondary_research.filter((s) => s.expand.media.filter((sc) => sc.type === 'embed').length > 0).length > 0 ? 2 : 1}>
         <GridBox background="transparent" variant="no-padding">

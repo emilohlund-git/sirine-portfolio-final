@@ -5,14 +5,15 @@ import ImageCarousel from './EmblaCarousel/ImageCarousel';
 
 type Props = {
   media: ProjectMedia
+  size?: 'small' | 'large' | 'full'
 }
 
-const ProjectMedia: React.FC<Props> = ({ media }) => {
+const ProjectMedia: React.FC<Props> = ({ media, size = 'large' }) => {
   const { type } = media;
 
   switch (type) {
     case 'image': return (
-      <ImageCarousel images={[getImage(media, media.media!)]} />
+      <ImageCarousel size={size} images={[getImage(media, media.media!)]} />
     )
     case 'embed': return (
       <iframe
