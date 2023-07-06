@@ -101,7 +101,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       <GridContainer cols={primary_research.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 2 : 1}>
         <GridBox spotlight={true} background="gray">
           <GridBoxHeader>Research</GridBoxHeader>
-          <div className={`${primary_research.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 'w-full' : 'w-[50%]'}`} dangerouslySetInnerHTML={{ __html: project.research_goals }} />
+          <div className={`${primary_research.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 'w-full' : 'lg:w-[50%]'}`} dangerouslySetInnerHTML={{ __html: project.research_goals }} />
         </GridBox>
       </GridContainer>
       <GridContainer cols={2}>

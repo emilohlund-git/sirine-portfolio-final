@@ -91,7 +91,7 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
           </div>
         </>
         :
-        <div className={`relative w-full ${size === 'large' ? 'h-[40rem]' : size === 'full' ? 'h-full' : 'h-[20rem]'}`}>
+        <div className={`relative w-full h-full ${size === 'large' ? 'lg:h-[40rem]' : size === 'full' ? 'lg:h-full' : 'lg:h-[20rem]'}`}>
           <LightboxImage>
             {!loaded ? <Spinner className="absolute left-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md" /> : null}
             <Image onLoad={() => setLoaded(true)} className="cursor-zoom-in z-0" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
