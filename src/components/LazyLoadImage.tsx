@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import React, { useCallback, useState } from 'react'
 import LightboxImage from './LightboxImage'
 import Spinner from './Spinner'
@@ -18,18 +17,26 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
   }, [inView, setHasLoaded])
 
   return (
-    <div className="embla__slide h-[70vh]">
-      {!hasLoaded && <Spinner />}
-      <LightboxImage>
-        <Image
-          fill
-          className="embla__slide__img object-contain"
-          onLoad={setLoaded}
-          src={imgSrc}
-          alt="Your alt text"
-          data-src={imgSrc}
-        />
-      </LightboxImage>
+    <div className="embla__slide">
+      <div
+        className={'relative embla__lazy-load'.concat(
+          hasLoaded ? ' embla__lazy-load--has-loaded' : '',
+        )}
+      >
+        {!hasLoaded && <Spinner className="absolute top-1/2 -translate-y-1/2 z-[100] filter backdrop-grayscale backdrop-contrast-50 backdrop-saturate-50 b" />}
+        <div className="embla__slide__number">
+          <span>{index + 1}</span>
+        </div>
+        <LightboxImage>
+          <img
+            className="embla__slide__img embla__lazy-load__img"
+            onLoad={setLoaded}
+            src={imgSrc}
+            alt="Your alt text"
+            data-src={imgSrc}
+          />
+        </LightboxImage>
+      </div>
     </div>
   )
 }

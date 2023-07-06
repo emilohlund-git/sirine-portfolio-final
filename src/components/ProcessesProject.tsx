@@ -1,6 +1,6 @@
 import React from 'react'
 import { projectHasLogoVideo, projectMediaArrayHasEmbed, projectMediaArrayWithEmbed } from '../utils/array.utils'
-import { getImage } from '../utils/pb.utils'
+import { getImage, getImageThumb } from '../utils/pb.utils'
 import ImageCarousel from './EmblaCarousel/ImageCarousel'
 import FigmaPrototype from './FigmaPrototype'
 import GridBox from './GridBox'
@@ -240,7 +240,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={3}>
           <GridBox variant="no-padding" background="transparent" className="col-span-2">
             <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel className="w-[60vw] h-[50vh]" size="large" images={project.gallery.map((g) => getImage(project, g))} />
+              <ImageCarousel className="w-[60vw] h-[50vh]" size="large" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
             </div>
           </GridBox>
           <GridBox background="transparent">

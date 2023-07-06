@@ -11,12 +11,13 @@ import './embla.css';
 
 type Props = {
   images?: string[];
+  thumbs?: string[];
   mockup?: boolean;
   size?: 'small' | 'large' | 'full';
   className?: string;
 }
 
-const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large', className }) => {
+const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size = 'large', className }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const [slidesInView, setSlidesInView] = useState<number[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -74,7 +75,7 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
     <>
       {images && images.length > 1 ?
         <>
-          <div className="embla bg-white">
+          <div className="embla">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
                 {images.map((image, index) => {
@@ -92,7 +93,7 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
           <div className="embla-thumbs">
             <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
               <div className="embla-thumbs__container">
-                {images.map((img, index) => (
+                {images?.map((img, index) => (
                   <Thumb
                     onClick={() => onThumbClick(index)}
                     selected={index === selectedIndex}
