@@ -268,7 +268,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           <GridBoxHeader color="white" size="large">Mockups &<br /> Interactive Prototype</GridBoxHeader>
         </GridBox>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         <GridBox variant="no-padding" background="white">
           <div className="carousel rounded-none lg:h-[50rem] relative w-full">
             {high_fidelity_mock_ups.map((mockup, index) => {
