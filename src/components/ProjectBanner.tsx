@@ -9,6 +9,7 @@ type Props = {
 }
 
 const ProjectBanner: React.FC<Props> = ({ project, imageAlignment, href }) => {
+  console.log(project.expand.colors.project_theme_color)
   return (
     <div id="projects" className="grid grid-cols-1 lg:grid-cols-2 h-full w-full">
       <div style={{
@@ -22,13 +23,26 @@ const ProjectBanner: React.FC<Props> = ({ project, imageAlignment, href }) => {
         <div className="font-normal text-md w-full text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400"
           dangerouslySetInnerHTML={{ __html: truncate(project.about, 130) }} />
         <div className="flex flex-wrap gap-2">
-          {project.roles.map((role, index) => {
+          {project.tools.map((tool, index) => {
             return (
-              <div key={role + index} className="badge badge-secondary badge-outline">{role}</div>
+              <div key={tool + index} className="badge badge-outline" style={{
+                color: project.expand.colors.project_theme_color
+              }}>{tool}</div>
             )
           })}
         </div>
-        <span className="font-semibold pl-2 link link-secondary"><Link href={href}>&gt; Read more</Link></span>
+        <div className="flex flex-wrap gap-2">
+          {project.roles.map((role, index) => {
+            return (
+              <div key={role + index} className="badge badge-outline" style={{
+                color: project.expand.colors.project_theme_color
+              }}>{role}</div>
+            )
+          })}
+        </div>
+        <span className={`font-semibold pl-2 link`} style={{
+          color: project.expand.colors.project_theme_color
+        }}><Link href={href}>&gt; Read more</Link></span>
       </div>
     </div>
   )

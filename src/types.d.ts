@@ -21,19 +21,6 @@ interface ProjectMediaContent extends DatabaseBase {
   }
 }
 
-interface FirstPageContent extends DatabaseBase {
-  box_1_text: string;
-  box_1_icon: string;
-  box_1_title: string;
-  box_2_text: string;
-  box_2_icon: string;
-  box_2_title: string;
-  box_3_text: string;
-  box_3_icon: string;
-  box_3_title: string;
-  contact_me_caption: string;
-}
-
 interface ProjectType extends DatabaseBase {
   about: string;
   cover_image: string;
@@ -41,6 +28,8 @@ interface ProjectType extends DatabaseBase {
   orientation: 'left' | 'right';
   potential_solution: string;
   problem: string;
+  gallery: string[];
+  image: string;
   processes: string[];
   tools: string[];
   roles: string[];
@@ -56,14 +45,7 @@ interface ProjectType extends DatabaseBase {
       created: string;
       updated: string;
       id: string;
-      process_steps_color: string;
-      role_list_color: string;
-      process_list_color: string;
-      tools_list_color: string;
-      banner_color: string;
-      slogan_color: string;
-      text_color: string;
-      title_color: string;
+      project_theme_color: string;
     }
     findings: ProjectMedia[];
     font_family: ProjectMedia[];

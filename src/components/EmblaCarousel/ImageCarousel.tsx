@@ -3,6 +3,7 @@
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
+import { LazyLoadImage } from '../LazyLoadImage';
 import LightboxImage from '../LightboxImage';
 import Spinner from '../Spinner';
 import { DotButton, NextButton, PrevButton } from './EmblaCarouselButtons';
@@ -11,10 +12,11 @@ import './embla.css';
 type Props = {
   images?: string[];
   mockup?: boolean;
-  size?: 'small' | 'large' | 'full'
+  size?: 'small' | 'large' | 'full';
+  className?: string;
 }
 
-const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large' }) => {
+const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large', className }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
@@ -67,11 +69,7 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
               <div className="embla__container">
                 {images.map((image, index) => {
                   return (
-                    <div className="embla__slide" key={image + index}>
-                      <img onLoad={() => setLoaded(true)} className="embla__slide__img embla__lazy-load__img object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{
-                        objectFit: 'contain'
-                      }} src={image} alt={"Carousel item for Key Insights"} />
-                    </div>
+                    <LazyLoadImage imgSrc={image} index={index} key={image + index} />
                   )
                 })}
               </div>
