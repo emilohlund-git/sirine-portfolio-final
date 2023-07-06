@@ -229,20 +229,19 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </div>
         </>
       }
-      {
-        project.gallery && (
-          <GridContainer cols={3}>
-            <GridBox variant="no-padding" background="transparent" className="col-span-2">
-              <div className="w-full h-full lg:h-full relative">
-                <ImageCarousel className="w-[60vw] h-[50vh]" size="large" images={project.gallery.map((g) => getImage(project, g))} />
-              </div>
-            </GridBox>
-            <GridBox background="transparent">
-              <GridBoxHeader>About</GridBoxHeader>
-              <div dangerouslySetInnerHTML={{ __html: project.about }} />
-            </GridBox>
-          </GridContainer>
-        )
+      {project.gallery && project.gallery.length > 0 && (
+        <GridContainer cols={3}>
+          <GridBox variant="no-padding" background="transparent" className="col-span-2">
+            <div className="w-full h-full lg:h-full relative">
+              <ImageCarousel className="w-[60vw] h-[50vh]" size="large" images={project.gallery.map((g) => getImage(project, g))} />
+            </div>
+          </GridBox>
+          <GridBox background="transparent">
+            <GridBoxHeader>About</GridBoxHeader>
+            <div dangerouslySetInnerHTML={{ __html: project.about }} />
+          </GridBox>
+        </GridContainer>
+      )
       }
     </>
   )
