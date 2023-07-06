@@ -1,24 +1,34 @@
-import React, { useState } from 'react'
+import Image from 'next/image'
+import React, { useCallback, useState } from 'react'
 import LightboxImage from './LightboxImage'
+import Spinner from './Spinner'
 
 type PropType = {
   imgSrc: string
+  inView: boolean
   index: number
 }
 
 export const LazyLoadImage: React.FC<PropType> = (props) => {
-  const { imgSrc, index } = props
+  const { imgSrc, inView, index } = props
   const [hasLoaded, setHasLoaded] = useState(false)
 
+  const setLoaded = useCallback(() => {
+    if (inView) setHasLoaded(true)
+  }, [inView, setHasLoaded])
+
   return (
-    <div className="embla__slide">
-      <div className="embla__slide__number">
-        <span>{index + 1}</span>
-      </div>
+    <div className="embla__slide h-[70vh]">
+      {!hasLoaded && <Spinner />}
       <LightboxImage>
-        <img className="embla__slide__img embla__lazy-load__img object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{
-          objectFit: 'contain'
-        }} src={imgSrc} alt={"Carousel item for Key Insights"} />
+        <Image
+          fill
+          className="embla__slide__img object-contain"
+          onLoad={setLoaded}
+          src={imgSrc}
+          alt="Your alt text"
+          data-src={imgSrc}
+        />
       </LightboxImage>
     </div>
   )

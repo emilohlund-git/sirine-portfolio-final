@@ -1,6 +1,6 @@
 'use client'
 
-import useEmblaCarousel from 'embla-carousel-react';
+import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { LazyLoadImage } from '../LazyLoadImage';
@@ -18,12 +18,24 @@ type Props = {
 
 const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large', className }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
-
+  const [slidesInView, setSlidesInView] = useState<number[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
     containScroll: 'keepSnaps',
     dragFree: true,
   })
+
+  const updateSlidesInView = useCallback((emblaApi: EmblaCarouselType) => {
+    setSlidesInView((slidesInView) => {
+      if (slidesInView.length === emblaApi.slideNodes().length) {
+        emblaApi.off('select', updateSlidesInView)
+      }
+      const inView = emblaApi
+        .slidesInView(true)
+        .filter((index) => !slidesInView.includes(index))
+      return slidesInView.concat(inView)
+    })
+  }, [])
 
   const onThumbClick = useCallback(
     (index: number) => {
@@ -38,6 +50,14 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
     setSelectedIndex(emblaApi.selectedScrollSnap())
     emblaThumbsApi.scrollTo(emblaApi.selectedScrollSnap())
   }, [emblaApi, emblaThumbsApi, setSelectedIndex])
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    updateSlidesInView(emblaApi)
+    emblaApi.on('select', updateSlidesInView)
+    emblaApi.on('reInit', updateSlidesInView)
+  }, [emblaApi, updateSlidesInView])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -59,7 +79,10 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large'
               <div className="embla__container">
                 {images.map((image, index) => {
                   return (
-                    <LazyLoadImage imgSrc={image} index={index} key={image + index} />
+                    <LazyLoadImage key={index}
+                      index={index}
+                      imgSrc={image}
+                      inView={slidesInView.indexOf(index) > -1} />
                   )
                 })}
               </div>
