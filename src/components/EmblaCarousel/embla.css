@@ -1,6 +1,6 @@
 .embla {
   --slide-spacing: 1rem;
-  --slide-size: 90%;
+  --slide-size: 100%;
   --slide-height: 100%;
 }
 .embla__viewport {
@@ -9,6 +9,7 @@
 .embla__container {
   backface-visibility: hidden;
   display: flex;
+  align-items: flex-start;
   touch-action: pan-y;
   flex-direction: row;
   height: auto;

@@ -3,18 +3,18 @@
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
-import { LazyLoadImage } from '../LazyLoadImage';
 import LightboxImage from '../LightboxImage';
 import Spinner from '../Spinner';
-import { NextButton, PrevButton } from './EmblaCarouselButtons';
+import { DotButton, NextButton, PrevButton } from './EmblaCarouselButtons';
 import './embla.css';
 
 type Props = {
   images?: string[];
   mockup?: boolean;
+  size?: 'small' | 'large' | 'full'
 }
 
-const ImageCarousel: React.FC<Props> = ({ images, mockup = false }) => {
+const ImageCarousel: React.FC<Props> = ({ images, mockup = false, size = 'large' }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
@@ -62,12 +62,16 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false }) => {
     <>
       {images && images.length > 1 ?
         <>
-          <div className="embla">
+          <div className="embla bg-white">
             <div className="embla__viewport" ref={emblaRef}>
               <div className="embla__container">
                 {images.map((image, index) => {
                   return (
-                    <LazyLoadImage key={index} imgSrc={image} index={index} />
+                    <div className="embla__slide" key={image + index}>
+                      <img onLoad={() => setLoaded(true)} className="embla__slide__img embla__lazy-load__img object-contain" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{
+                        objectFit: 'contain'
+                      }} src={image} alt={"Carousel item for Key Insights"} />
+                    </div>
                   )
                 })}
               </div>
@@ -75,9 +79,19 @@ const ImageCarousel: React.FC<Props> = ({ images, mockup = false }) => {
             <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
             <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
           </div>
+
+          <div className="embla__dots">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                selected={index === selectedIndex}
+                onClick={() => scrollTo(index)}
+              />
+            ))}
+          </div>
         </>
         :
-        <div className="relative w-full h-full">
+        <div className={`relative w-full ${size === 'large' ? 'h-[40rem]' : size === 'full' ? 'h-full' : 'h-[20rem]'}`}>
           <LightboxImage>
             {!loaded ? <Spinner className="absolute left-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md" /> : null}
             <Image onLoad={() => setLoaded(true)} className="cursor-zoom-in z-0" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{

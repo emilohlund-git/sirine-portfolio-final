@@ -15,6 +15,7 @@
     "@types/react-dom": "18.2.6",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
+    "embla-carousel-auto-height": "^8.0.0-rc07",
     "embla-carousel-react": "^8.0.0-rc07",
     "encoding": "^0.1.13",
     "eslint": "8.43.0",

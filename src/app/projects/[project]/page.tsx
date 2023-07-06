@@ -6,9 +6,9 @@ import FigmaPrototype from "../../../components/FigmaPrototype";
 import GridBox from "../../../components/GridBox";
 import GridBoxHeader from "../../../components/GridBoxHeader";
 import GridContainer from "../../../components/GridContainer";
+import ProjectMedia from "../../../components/ProjectMedia";
 import Spinner from "../../../components/Spinner";
 import { projectHasLogoVideo } from "../../../utils/array.utils";
-import { truncate } from "../../../utils/general.utils";
 import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
@@ -98,38 +98,40 @@ export default async function Page({ params }: { params: { project: string } }) 
           <div dangerouslySetInnerHTML={{ __html: project.potential_solution }} />
         </GridBox>
       </GridContainer >
+      <GridContainer cols={primary_research.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 2 : 1}>
+        <GridBox spotlight={true} background="gray">
+          <GridBoxHeader>Research</GridBoxHeader>
+          <div className={`${primary_research.filter((r) => r.expand.media.find((f) => f.type === 'pdf')).length > 0 ? 'w-full' : 'w-[50%]'}`} dangerouslySetInnerHTML={{ __html: project.research_goals }} />
+        </GridBox>
+      </GridContainer>
       <GridContainer cols={2}>
         <GridBox background="white">
-          <GridBoxHeader color='gray'>Media</GridBoxHeader>
+          <GridBoxHeader color="gray">Primary Research</GridBoxHeader>
           {primary_research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
             <div className="flex flex-col break-all max-w-full" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
-              {research.expand.media.map((media) =>
-                <a key={media.id} className="link link-secondary text-lg w-fit flex items-center gap-x-1" target="_blank" href={getImage(media, media.media!)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                  {truncate(media.media!, 25)}
-                </a>
+              {research.expand.media.filter((m) => m.type === 'image').length > 0 &&
+                <ImageCarousel key={research.id} images={research.expand.media.map((m) => getImage(m, m.media!))} />
+              }
+              {research.expand.media.map((m) =>
+                m.type === 'pdf' && <ProjectMedia key={m.id} media={m} />
               )}
             </div>
           )}
+        </GridBox>
+        <GridBox background="white">
+          <GridBoxHeader color="gray">Secondary Research</GridBoxHeader>
           {secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
             <div className="flex flex-col" key={research.id}>
               <h4 className="font-light text-2xl mb-2">{research.content}</h4>
               {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
-                <a key={media.id} className="link link-secondary text-lg w-fit flex items-center gap-x-1" target="_blank" href={getImage(media, media.media!)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                  {truncate(media.media!, 25)}
-                </a>
+                <ProjectMedia key={media.id} media={media} />
               )}
             </div>
           )}
         </GridBox>
-        <GridBox background="transparent">
-          <GridBoxHeader>Research</GridBoxHeader>
-          <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
-        </GridBox>
       </GridContainer>
-      <GridContainer cols={2}>
+      <GridContainer cols={secondary_research.filter((s) => s.expand.media.filter((sc) => sc.type === 'embed').length > 0).length > 0 ? 2 : 1}>
         <GridBox background="transparent" variant="no-padding">
           {secondary_research.map((research) =>
             <div key={research.id}>
@@ -209,7 +211,7 @@ export default async function Page({ params }: { params: { project: string } }) 
           {logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
             <GridBox key={media.id} variant="no-padding" background="white" className="p-10">
               <div className="w-full h-[40vh] lg:h-full relative">
-                <ImageCarousel images={[getImage(media, media.media!)]} />
+                <ImageCarousel size={'small'} images={[getImage(media, media.media!)]} />
               </div>
             </GridBox>
           )}
@@ -269,7 +271,7 @@ export default async function Page({ params }: { params: { project: string } }) 
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
         <GridBox variant="no-padding" background="white">
-          <ImageCarousel mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
+          <ImageCarousel size='full' mockup={true} images={high_fidelity_mock_ups.map((mockup) => getImage(mockup, mockup.media!))} />
         </GridBox>
         <GridBox variant="no-padding" background="gray">
           <div className="relative w-full h-full">
