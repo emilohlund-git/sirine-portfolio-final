@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { AiOutlineProject } from 'react-icons/ai';
+import Link from "next/link";
+import { AiOutlineLinkedin, AiOutlineProject } from 'react-icons/ai';
 import Cards from "../components/Cards";
 import Contact from "../components/Contact";
 import Divider from "../components/Divider";
@@ -54,7 +55,7 @@ export default async function Home() {
       <Divider />
       <div className="flex flex-col lg:flex-row text-center lg:justify-between w-full lg:px-60 text-sm mb-20">
         <p>© Sirine Harzzalah {new Date().getFullYear()}</p>
-        <p>LinkedIn</p>
+        <p><Link className="flex gap-x-1 items-center" target="_blank" referrerPolicy="no-referrer" href="https://linked.in/sirine-harzallah"><AiOutlineLinkedin /> LinkedIn</Link></p>
       </div>
     </div >
   )
