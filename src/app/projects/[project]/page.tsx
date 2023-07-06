@@ -136,7 +136,7 @@ export default async function Page({ params }: { params: { project: string } }) 
               </div>
             )}
           </GridBox>
-          <GridBox variant={projectMediaContentHasPDF(secondary_research) ? 'default' : 'no-padding'} background="white" className="lg:h-[45rem]">
+          <GridBox variant={projectMediaContentHasPDF(secondary_research) ? 'default' : 'no-padding'} background="white" className={`${projectMediaContentHasPDF(secondary_research) ? '' : 'lg:h-[45rem]'}`}>
             {secondary_research.filter((r) => r.expand.media.filter((m) => m.type !== 'embed').length).map((research) =>
               <>
                 {research.expand.media.filter((media) => media.embed_src === '').map((media) =>
