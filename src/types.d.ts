@@ -8,10 +8,12 @@ interface DatabaseBase {
   id: string;
 }
 
+type FileType = 'image' | 'embed' | 'pdf' | 'video';
+
 interface ProjectMedia extends DatabaseBase {
   embed_src?: string;
   media?: string;
-  type: 'image' | 'embed' | 'pdf' | 'video';
+  type: FileType;
 }
 
 interface ProjectMediaContent extends DatabaseBase {

@@ -52,8 +52,15 @@ const projectMediaWithEmbed = (projectMedia: ProjectMediaContent) => {
   return withEmbeds;
 }
 
+const projectMediaContentToProjectMediaArray = (projectMedia: ProjectMediaContent[]): ProjectMedia[] => {
+  const projectMediaArray = <ProjectMedia[]>[];
+  projectMedia.forEach((r) => r.expand.media.forEach((m) => {
+    projectMediaArray.push(m);
+  }));
+  return projectMediaArray;
+}
+
 export {
-  projectHasLogoVideo, projectMediaArrayByFileType, projectMediaArrayHasEmbed,
-  projectMediaArrayHasPDF, projectMediaArrayWithEmbed, projectMediaArrayWithoutEmbed, projectMediaWithEmbed, projectMediaWithoutEmbed, shouldBeCarouselProjectMediaArray, shouldBeCarouselProjectMediaContent
+  projectHasLogoVideo, projectMediaArrayByFileType, projectMediaArrayHasEmbed, projectMediaArrayHasPDF, projectMediaArrayWithEmbed, projectMediaArrayWithoutEmbed, projectMediaContentToProjectMediaArray, projectMediaWithEmbed, projectMediaWithoutEmbed, shouldBeCarouselProjectMediaArray, shouldBeCarouselProjectMediaContent
 };
 

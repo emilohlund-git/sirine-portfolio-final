@@ -1,5 +1,5 @@
 import React from 'react'
-import { projectMediaArrayByFileType, projectMediaArrayHasPDF, shouldBeCarouselProjectMediaArray } from '../utils/array.utils'
+import { projectMediaArrayByFileType, shouldBeCarouselProjectMediaArray } from '../utils/array.utils'
 import { getImage } from '../utils/pb.utils'
 import ImageCarousel from './EmblaCarousel/ImageCarousel'
 import GridBox from './GridBox'
@@ -13,9 +13,25 @@ type Props = {
 }
 
 const ResearchContainer: React.FC<Props> = ({ research, title }) => {
+  const PDFDocuments = projectMediaArrayByFileType(research, 'pdf');
+  const images = projectMediaArrayByFileType(research, 'image');
+  const embeds = projectMediaArrayByFileType(research, 'embed');
+  const videos = projectMediaArrayByFileType(research, 'video');
+
+  const media = [PDFDocuments, images, embeds, videos];
+
+  const getVariant = (fileType: FileType) => {
+    switch (fileType) {
+      case 'embed': return 'no-padding';
+      case 'image': return 'no-padding';
+      case 'pdf': return 'default';
+      case 'video': return 'no-padding';
+    }
+  }
+
   return (
-    <GridContainer cols={1}>
-      <GridBox background="white" className="lg:h-[20rem]">
+    <GridContainer className="flex">
+      <GridBox background="white" className="grid col-span-10 h-[20rem]">
         <GridBoxHeader color="gray">{title}</GridBoxHeader>
         {research.map((research) =>
           <div className="flex flex-col break-all max-w-full" key={research.id}>
@@ -23,45 +39,20 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
           </div>
         )}
       </GridBox>
-      {projectMediaArrayHasPDF(research) &&
-        <GridBox variant={'default'} background="white">
-          {projectMediaArrayByFileType(research, 'pdf').map((m) =>
-            <>
-              <ProjectMedia key={m.id} media={m} />
-            </>
-          )}
-        </GridBox>
-      }
-      {projectMediaArrayByFileType(research, 'image').length > 0 &&
-        <GridBox variant={'no-padding'} background="white" className={`lg:h-[40rem] place-content-center`}>
-          {projectMediaArrayByFileType(research, 'image').map((r) => {
-            const mediaArray = projectMediaArrayByFileType(research, 'image');
-
-            return (
-              <>
-                {shouldBeCarouselProjectMediaArray(mediaArray) ?
-                  <ImageCarousel key={r.id} images={mediaArray.map((m) => getImage(m, m.media!))} className="h-[30rem]" style={{
-                    objectFit: 'contain'
-                  }} />
-                  :
-                  <ProjectMedia key={r.id} media={r} className="h-[30rem]" />
-                }
-              </>
-            )
+      <GridContainer className="flex col-span-10 lg:h-[50rem]">
+        {media.map((mediaTypeGroup, index) => {
+          if (mediaTypeGroup[0]) {
+            return (<GridBox key={index} variant={getVariant(mediaTypeGroup[0]?.type)} background="white" className={`flex flex-grow h-full ${mediaTypeGroup[0].type === 'pdf' && ''}`}>
+              {shouldBeCarouselProjectMediaArray(mediaTypeGroup) && <ImageCarousel images={mediaTypeGroup.map((m) => getImage(m, m.media!))} className="h-[40rem]" />}
+              {!shouldBeCarouselProjectMediaArray(mediaTypeGroup) && mediaTypeGroup.map((mediaType) => {
+                return (
+                  <ProjectMedia key={mediaType.id} media={mediaType} className={`${mediaType.type === 'image' && 'h-[40rem]'}`} />
+                )
+              })}
+            </GridBox >)
           }
-          )}
-        </GridBox>
-      }
-      <GridBox variant={'no-padding'} background="white" className={`lg:h-[40rem] place-content-center`}>
-        {projectMediaArrayByFileType(research, 'embed').map((r) => {
-          return (
-            <>
-              <ProjectMedia key={r.id} media={r} className="h-[30rem]" />
-            </>
-          )
-        }
-        )}
-      </GridBox>
+        })}
+      </GridContainer>
     </GridContainer>
   )
 }
