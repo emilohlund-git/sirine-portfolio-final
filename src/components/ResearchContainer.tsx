@@ -31,7 +31,7 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
 
   return (
     <GridContainer cols={10} className="flex">
-      <GridBox background="white" className="grid col-span-10 h-[22rem]">
+      <GridBox background="white" className="grid col-span-10 h-[23rem]">
         <GridBoxHeader color="gray">{title}</GridBoxHeader>
         {research.map((research) =>
           <div className="flex flex-col break-all max-w-full" key={research.id}>
