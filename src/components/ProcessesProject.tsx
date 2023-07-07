@@ -190,33 +190,24 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         </GridContainer>
       }
       {iconography && font_family &&
-        <GridContainer cols={3}>
-          <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
-            {iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
-              <div key={media.id} className="w-full h-[40rem] lg:h-full relative">
-                <ProjectMedia media={media} className="h-[40rem]" style={{
-                  objectFit: 'contain'
-                }} />
-              </div>
-            )}
-          </GridBox>
-          <GridBox variant="no-padding" background="white" className="flex justify-center items-center p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
-            <div className="w-full h-full lg:h-full relative">
-              {shouldBeCarouselProjectMediaArray(font_family) ?
-                <ImageCarousel images={font_family.map((fm) => getImage(fm, fm.media!))} className="h-[35rem]" style={{
-                  objectFit: 'contain'
-                }} />
-                :
-                <ProjectMedia media={font_family[0]} className="h-[40rem]" style={{
-                  objectFit: 'contain'
-                }} />
-              }
-            </div>
-          </GridBox>
-          <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
+        <GridContainer cols={[...iconography.map((c) => c.expand.media).flat(1), ...font_family].length + 1}>
+          <GridBox spotlight={true} background="gray" className="order-first lg:order-first">
             <GridBoxHeader>Iconography & Font Family</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: iconography[0].content }} />
           </GridBox>
+          <GridContainer cols={[...iconography.map((c) => c.expand.media).flat(1), ...font_family].length}>
+            {[...iconography.map((c) => c.expand.media).flat(1), ...font_family].map((m, index) => {
+              return (
+                <GridBox key={index} variant="no-padding" background="white" className="p-10 h-[40vh] lg:h-full order-last lg:order-last">
+                  <div key={m.id} className="w-full h-[40rem] lg:h-full relative">
+                    <ProjectMedia media={m} className="h-[40rem]" style={{
+                      objectFit: 'contain'
+                    }} />
+                  </div>
+                </GridBox>
+              )
+            })}
+          </GridContainer>
         </GridContainer>
       }
       {interactive_prototype &&
