@@ -190,7 +190,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         </GridContainer>
       }
       {iconography && font_family &&
-        <GridContainer cols={[...iconography.map((c) => c.expand.media).flat(1), ...font_family].length + 1}>
+        <GridContainer cols={1}>
           <GridBox spotlight={true} background="gray" className="order-first lg:order-first">
             <GridBoxHeader>Iconography & Font Family</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: iconography[0].content }} />
