@@ -81,7 +81,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
           </GridBox>
           <GridBox variant="no-padding" background="transparent">
-            <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
+            <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem] object-contain" />
           </GridBox>
         </GridContainer>
       }
