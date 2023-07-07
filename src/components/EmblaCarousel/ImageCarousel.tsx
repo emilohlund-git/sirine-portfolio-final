@@ -1,10 +1,8 @@
 'use client'
 
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
-import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { CSSProperties, useCallback, useEffect, useState } from 'react';
 import { LazyLoadImage } from '../LazyLoadImage';
-import LightboxImage from '../LightboxImage';
 import Spinner from '../Spinner';
 import { Thumb } from './EmblaThumbButton';
 import './embla.css';
@@ -15,9 +13,10 @@ type Props = {
   mockup?: boolean;
   size?: 'small' | 'large' | 'full';
   className?: string;
+  style?: CSSProperties;
 }
 
-const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size = 'large', className }) => {
+const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size = 'large', className, style }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel()
   const [slidesInView, setSlidesInView] = useState<number[]>([])
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -67,56 +66,42 @@ const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size =
     emblaApi.on('reInit', onSelect)
   }, [emblaApi, onSelect])
 
-  const [loaded, setLoaded] = useState(false);
-
   if (!images) return <Spinner />
 
   return (
     <>
-      {images && images.length > 1 ?
-        <>
-          <div className="embla">
-            <div className="embla__viewport" ref={emblaRef}>
-              <div className="embla__container">
-                {images.map((image, index) => {
-                  return (
-                    <LazyLoadImage key={index}
-                      src={image}
-                      alt="any"
-                      className={className}
-                    />
-                  )
-                })}
-              </div>
-            </div>
+      <div className="embla">
+        <div className="embla__viewport" ref={emblaRef}>
+          <div className="embla__container">
+            {images.map((image, index) => {
+              return (
+                <LazyLoadImage key={index}
+                  src={image}
+                  alt="any"
+                  className={className}
+                  style={style}
+                />
+              )
+            })}
           </div>
-
-          <div className="embla-thumbs">
-            <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
-              <div className="embla-thumbs__container">
-                {images?.map((img, index) => (
-                  <Thumb
-                    onClick={() => onThumbClick(index)}
-                    selected={index === selectedIndex}
-                    index={index}
-                    imgSrc={img}
-                    key={index}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </>
-        :
-        <div className={`relative w-full h-full ${size === 'large' ? 'lg:h-[40rem]' : size === 'full' ? 'lg:h-full' : 'lg:h-[20rem]'}`}>
-          <LightboxImage>
-            {!loaded ? <Spinner className="absolute left-0 top-1/2 -translate-y-1/2 z-10 backdrop-blur-md" /> : null}
-            <Image onLoad={() => setLoaded(true)} className="cursor-zoom-in z-0" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" fill style={{
-              objectFit: 'contain'
-            }} src={images[0]} alt={"Carousel item for Key Insights"} />
-          </LightboxImage>
         </div>
-      }
+      </div>
+
+      <div className="embla-thumbs">
+        <div className="embla-thumbs__viewport" ref={emblaThumbsRef}>
+          <div className="embla-thumbs__container">
+            {images?.map((img, index) => (
+              <Thumb
+                onClick={() => onThumbClick(index)}
+                selected={index === selectedIndex}
+                index={index}
+                imgSrc={img}
+                key={index}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   )
 }

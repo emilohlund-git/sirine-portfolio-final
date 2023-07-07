@@ -81,7 +81,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
           </GridBox>
           <GridBox variant="no-padding" background="transparent">
-            <ImageCarousel images={findings?.map((finding) => getImage(finding, finding.media!))} className="h-[70vh]" />
+            <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
           </GridBox>
         </GridContainer>
       }
@@ -89,7 +89,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative">
-              <ImageCarousel images={persona.expand.media?.map((pm) => getImage(pm, pm?.media!))} />
+              <ProjectMedia media={persona.expand.media[0]} className="h-[40rem]" />
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray" className="order-first">
@@ -106,7 +106,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-              <ImageCarousel images={affinity_map.expand.media?.map((amm) => getImage(amm, amm.media!))} />
+              <ProjectMedia media={affinity_map.expand.media[0]} className="h-[40rem]" />
             </div>
           </GridBox>
         </GridContainer>
@@ -115,7 +115,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-              <ImageCarousel images={user_flow.expand.media?.map((ufm) => getImage(ufm, ufm.media!))} />
+              <ProjectMedia media={user_flow.expand.media[0]} className="h-[40rem]" />
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray">
@@ -132,7 +132,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-              <ImageCarousel images={navigation_map.expand.media?.map((nm) => getImage(nm, nm.media!))} />
+              <ProjectMedia media={navigation_map.expand.media[0]} className="h-[40rem]" />
             </div>
           </GridBox>
         </GridContainer>
@@ -154,7 +154,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             {logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
               <GridBox key={media.id} variant="no-padding" background="white" className="p-10">
                 <div className="w-full h-[40vh] lg:h-full relative">
-                  <ImageCarousel size={'small'} images={[getImage(media, media.media!)]} />
+                  <ProjectMedia media={media} className="h-[20rem] object-contain" style={{
+                    objectFit: 'contain'
+                  }} />
                 </div>
               </GridBox>
             )}
@@ -181,7 +183,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
             {brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
               <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-                <ImageCarousel images={[getImage(media, media.media!)]} />
+                <ProjectMedia media={media} className="h-[40rem]" style={{
+                  objectFit: 'contain'
+                }} />
               </div>
             )}
           </GridBox>
@@ -191,14 +195,18 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={3}>
           <GridBox variant="no-padding" background="white" className="p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
             {iconography[0].expand.media.filter((media) => media.type === 'image').map((media) =>
-              <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
-                <ImageCarousel images={[getImage(media, media.media!)]} />
+              <div key={media.id} className="w-full h-[40rem] lg:h-full relative">
+                <ProjectMedia media={media} className="h-[40rem]" style={{
+                  objectFit: 'contain'
+                }} />
               </div>
             )}
           </GridBox>
           <GridBox variant="no-padding" background="white" className="flex justify-center items-center p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
             <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel images={font_family.map((fm) => getImage(fm, fm.media!))} />
+              <ImageCarousel images={font_family.map((fm) => getImage(fm, fm.media!))} className="h-[35rem]" style={{
+                objectFit: 'contain'
+              }} />
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
@@ -221,8 +229,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
             <GridBox variant="no-padding" background="transparent">
-              <div className="w-full h-[80vh] lg:h-full relative">
-                <ImageCarousel className="h-[80vh]" size='full' mockup={true} images={project.high_fidelity_mock_ups.map((mockup) => getImage(project, mockup!))} />
+              <div className="w-full h-[50rem] lg:h-full relative">
+                <ImageCarousel className="h-[40rem]" size='full' mockup={true} images={project.high_fidelity_mock_ups.map((mockup) => getImage(project, mockup!))} />
               </div>
             </GridBox>
             <GridBox variant="no-padding" background="gray">

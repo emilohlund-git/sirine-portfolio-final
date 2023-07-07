@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import { truncate } from '../utils/general.utils';
 import { getImage } from '../utils/pb.utils';
-import ImageCarousel from './EmblaCarousel/ImageCarousel';
+import { LazyLoadImage } from './LazyLoadImage';
 
 type Props = {
   media: ProjectMedia
-  size?: 'small' | 'large' | 'full'
+  className?: string;
+  style?: CSSProperties;
 }
 
-const ProjectMedia: React.FC<Props> = ({ media, size = 'large' }) => {
+const ProjectMedia: React.FC<Props> = ({ media, className, style }) => {
   const { type } = media;
 
   switch (type) {
     case 'image': return (
-      <ImageCarousel size={size} images={[getImage(media, media.media!)]} />
+      <LazyLoadImage src={getImage(media, media.media!)} alt="" className={className} style={style} />
     )
     case 'embed': return (
       <iframe

@@ -23,17 +23,19 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
           </div>
         )}
       </GridBox>
-      <GridBox variant={projectMediaArrayHasPDF(research) ? 'default' : 'no-padding'} background="white" className={`${projectMediaArrayHasPDF(research) ? '' : 'lg:h-[45rem]'}`}>
+      <GridBox variant={projectMediaArrayHasPDF(research) ? 'default' : 'no-padding'} background="white" className={`${projectMediaArrayHasPDF(research) ? '' : 'lg:h-[40rem]'}`}>
         {projectMediaArrayWithoutEmbed(research).map((r) =>
           <>
             {shouldBeCarousel(r) ?
-              <ImageCarousel key={r.id} images={r.expand.media.map((m) => getImage(m, m.media!))} />
+              <ImageCarousel key={r.id} images={r.expand.media.map((m) => getImage(m, m.media!))} className="h-[30rem]" style={{
+                objectFit: 'contain'
+              }} />
               :
               <>
                 {r.expand.media.map((media) =>
-                  <div key={media.id} className="w-full h-[70vh] lg:h-full relative">
-                    <ProjectMedia size={'full'} media={media} />
-                  </div>
+                  <ProjectMedia key={media.id} media={media} className="h-[40rem]" style={{
+                    objectFit: 'contain'
+                  }} />
                 )}
               </>
             }

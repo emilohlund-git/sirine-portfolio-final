@@ -24,10 +24,7 @@ export const LazyLoadImage: React.FC<ImageProps> = ({ className, onLoad, alt, ..
         <LightboxImage>
           <Image
             fill
-            className={`embla__slide__img embla__lazy-load__img`}
-            style={{
-              objectFit: 'cover'
-            }}
+            className={`embla__slide__img embla__lazy-load__img ${className}`}
             alt={alt}
             onLoad={onLoadCallback}
             {...props}

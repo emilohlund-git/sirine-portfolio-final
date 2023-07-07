@@ -20,6 +20,7 @@ const ProjectBanner: React.FC<Props> = ({ project, imageAlignment, href }) => {
           }}
           src={getImage(project, project.cover_image)}
           alt={project.title}
+          className="h-[50vh]"
         />
       </div>
       <div className={`w-full py-32 h-full flex gap-y-4 justify-center px-10 lg:px-40 flex-col border-[1px] bg-gradient-to-tr from-base-300 via-base-100 to-base-200 border-gray-800 order-2 ${imageAlignment === 'left' ? 'lg:order-2' : 'lg:order-1'}`}>
