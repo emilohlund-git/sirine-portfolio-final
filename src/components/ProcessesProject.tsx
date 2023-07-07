@@ -200,9 +200,15 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white" className="flex justify-center items-center p-10 lg:p-20 h-[40vh] lg:h-full order-last lg:order-first">
             <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel images={font_family.map((fm) => getImage(fm, fm.media!))} className="h-[35rem]" style={{
-                objectFit: 'contain'
-              }} />
+              {shouldBeCarouselProjectMediaArray(font_family) ?
+                <ImageCarousel images={font_family.map((fm) => getImage(fm, fm.media!))} className="h-[35rem]" style={{
+                  objectFit: 'contain'
+                }} />
+                :
+                <ProjectMedia media={font_family[0]} className="h-[40rem]" style={{
+                  objectFit: 'contain'
+                }} />
+              }
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray" className="order-first lg:order-last">
