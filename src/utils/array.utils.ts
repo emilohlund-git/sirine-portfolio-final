@@ -7,8 +7,23 @@ const projectMediaArrayHasPDF = (projectMedia: ProjectMediaContent[]) => {
   return numOfDocuments > 0;
 }
 
-const shouldBeCarousel = (projectMedia: ProjectMediaContent) => {
+const projectMediaArrayByFileType = (projectMedia: ProjectMediaContent[], type: 'image' | 'pdf' | 'video' | 'embed'): ProjectMedia[] => {
+  const projectMediaArray = <ProjectMedia[]>[];
+  projectMedia.forEach((r) => r.expand.media.forEach((m) => {
+    if (m.type === type) {
+      projectMediaArray.push(m);
+    }
+  }));
+  return projectMediaArray;
+}
+
+const shouldBeCarouselProjectMediaContent = (projectMedia: ProjectMediaContent) => {
   const numImages = projectMedia?.expand.media?.filter((m) => m.type === 'image').length;
+  return numImages > 1;
+}
+
+const shouldBeCarouselProjectMediaArray = (projectMedia: ProjectMedia[]) => {
+  const numImages = projectMedia?.filter((m) => m.type === 'image').length;
   return numImages > 1;
 }
 
@@ -38,9 +53,7 @@ const projectMediaWithEmbed = (projectMedia: ProjectMediaContent) => {
 }
 
 export {
-  projectHasLogoVideo,
-  projectMediaArrayHasEmbed,
-  projectMediaArrayHasPDF, projectMediaArrayWithEmbed, projectMediaArrayWithoutEmbed, projectMediaWithEmbed, projectMediaWithoutEmbed,
-  shouldBeCarousel
+  projectHasLogoVideo, projectMediaArrayByFileType, projectMediaArrayHasEmbed,
+  projectMediaArrayHasPDF, projectMediaArrayWithEmbed, projectMediaArrayWithoutEmbed, projectMediaWithEmbed, projectMediaWithoutEmbed, shouldBeCarouselProjectMediaArray, shouldBeCarouselProjectMediaContent
 };
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { projectHasLogoVideo, projectMediaArrayHasEmbed, projectMediaArrayWithEmbed } from '../utils/array.utils'
+import { projectHasLogoVideo, shouldBeCarouselProjectMediaArray } from '../utils/array.utils'
 import { getImage, getImageThumb } from '../utils/pb.utils'
 import ImageCarousel from './EmblaCarousel/ImageCarousel'
 import FigmaPrototype from './FigmaPrototype'
@@ -57,23 +57,6 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <ResearchContainer research={secondary_research} title="Secondary Research" />
         </GridContainer>
       }
-      {secondary_research &&
-        <GridContainer cols={secondary_research?.filter((s) => s.expand.media.filter((sc) => sc.type === 'embed').length > 0).length > 0 ? 2 : 1}>
-          {projectMediaArrayHasEmbed(secondary_research) &&
-            <GridBox variant="center" position="end" background="white">
-            </GridBox>
-          }
-          <GridBox background="transparent" variant="no-padding">
-            {projectMediaArrayWithEmbed(secondary_research)?.map((research) =>
-              <div key={research.id}>
-                {research.expand.media.map((media) =>
-                  <ProjectMedia key={media.id} media={media} />
-                )}
-              </div>
-            )}
-          </GridBox>
-        </GridContainer>
-      }
       {findings &&
         <GridContainer cols={2}>
           <GridBox spotlight={true} background="gray">
@@ -81,7 +64,12 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
           </GridBox>
           <GridBox variant="no-padding" background="transparent">
-            <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem] object-contain" />
+            {
+              shouldBeCarouselProjectMediaArray(findings) ?
+                <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
+                :
+                <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
+            }
           </GridBox>
         </GridContainer>
       }

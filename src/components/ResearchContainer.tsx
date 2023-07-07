@@ -1,5 +1,5 @@
 import React from 'react'
-import { projectMediaArrayHasPDF, projectMediaArrayWithoutEmbed, shouldBeCarousel } from '../utils/array.utils'
+import { projectMediaArrayByFileType, projectMediaArrayHasPDF, shouldBeCarouselProjectMediaArray } from '../utils/array.utils'
 import { getImage } from '../utils/pb.utils'
 import ImageCarousel from './EmblaCarousel/ImageCarousel'
 import GridBox from './GridBox'
@@ -23,24 +23,43 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
           </div>
         )}
       </GridBox>
-      <GridBox variant={projectMediaArrayHasPDF(research) ? 'default' : 'no-padding'} background="white" className={`${projectMediaArrayHasPDF(research) ? '' : 'lg:h-[40rem]'}`}>
-        {projectMediaArrayWithoutEmbed(research).map((r) =>
-          <>
-            {shouldBeCarousel(r) ?
-              <ImageCarousel key={r.id} images={r.expand.media.map((m) => getImage(m, m.media!))} className="h-[30rem]" style={{
-                objectFit: 'contain'
-              }} />
-              :
+      {projectMediaArrayHasPDF(research) &&
+        <GridBox variant={'default'} background="white">
+          {projectMediaArrayByFileType(research, 'pdf').map((m) =>
+            <>
+              <ProjectMedia key={m.id} media={m} />
+            </>
+          )}
+        </GridBox>
+      }
+      {projectMediaArrayByFileType(research, 'image').length > 0 &&
+        <GridBox variant={'no-padding'} background="white" className={`lg:h-[40rem] place-content-center`}>
+          {projectMediaArrayByFileType(research, 'image').map((r) => {
+            const mediaArray = projectMediaArrayByFileType(research, 'image');
+
+            return (
               <>
-                {r.expand.media.map((media) =>
-                  <ProjectMedia key={media.id} media={media} className="h-[40rem]" style={{
+                {shouldBeCarouselProjectMediaArray(mediaArray) ?
+                  <ImageCarousel key={r.id} images={mediaArray.map((m) => getImage(m, m.media!))} className="h-[30rem]" style={{
                     objectFit: 'contain'
                   }} />
-                )}
+                  :
+                  <ProjectMedia key={r.id} media={r} className="h-[30rem]" />
+                }
               </>
-            }
-
-          </>
+            )
+          }
+          )}
+        </GridBox>
+      }
+      <GridBox variant={'no-padding'} background="white" className={`lg:h-[40rem] place-content-center`}>
+        {projectMediaArrayByFileType(research, 'embed').map((r) => {
+          return (
+            <>
+              <ProjectMedia key={r.id} media={r} className="h-[30rem]" />
+            </>
+          )
+        }
         )}
       </GridBox>
     </GridContainer>
