@@ -5,6 +5,7 @@ import ImageCarousel from './EmblaCarousel/ImageCarousel';
 import GridBox from './GridBox';
 import GridBoxHeader from './GridBoxHeader';
 import GridContainer from './GridContainer';
+import ImageCarousels from './ImageCarousels';
 
 type Props = {
   project: ProjectType;
@@ -16,12 +17,7 @@ const GalleryProject: React.FC<Props> = ({ project }) => {
       <GridBox variant="no-padding" background="transparent" className="col-span-2">
         {project.expand.galleries?.length > 0 ?
           <div className="w-full h-full lg:h-full relative">
-            {project.expand.galleries.map((g) =>
-              <>
-                <button key={g.id} className="btn rounded-none btn-outline">{g.title}</button>
-                <ImageCarousel className="h-[80vh]" images={g.gallery_images.map((c) => getImage(g, c))} thumbs={g.gallery_images.map((c) => getImageThumb(g, c))} />
-              </>
-            )}
+            <ImageCarousels galleries={project.expand.galleries} />
           </div>
           :
           <div className="w-full h-full lg:h-full relative">
