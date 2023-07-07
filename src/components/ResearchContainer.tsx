@@ -30,8 +30,8 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
   }
 
   return (
-    <GridContainer className="flex">
-      <GridBox background="white" className="grid col-span-10 h-[20rem]">
+    <GridContainer cols={10} className="flex">
+      <GridBox background="white" className="grid col-span-10 h-[22rem]">
         <GridBoxHeader color="gray">{title}</GridBoxHeader>
         {research.map((research) =>
           <div className="flex flex-col break-all max-w-full" key={research.id}>
