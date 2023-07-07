@@ -83,7 +83,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
           </GridBox>
           <GridBox variant="no-padding" background="transparent">
-            <ImageCarousel images={findings?.map((finding) => getImage(finding, finding.media!))} />
+            <ImageCarousel images={findings?.map((finding) => getImage(finding, finding.media!))} className="h-[70vh]" />
           </GridBox>
         </GridContainer>
       }
@@ -224,7 +224,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full">
             <GridBox variant="no-padding" background="transparent">
               <div className="w-full h-[80vh] lg:h-full relative">
-                <ImageCarousel size='full' mockup={true} images={project.high_fidelity_mock_ups.map((mockup) => getImage(project, mockup!))} />
+                <ImageCarousel className="h-[80vh]" size='full' mockup={true} images={project.high_fidelity_mock_ups.map((mockup) => getImage(project, mockup!))} />
               </div>
             </GridBox>
             <GridBox variant="no-padding" background="gray">

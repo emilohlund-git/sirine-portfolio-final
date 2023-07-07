@@ -16,7 +16,7 @@ export const LazyLoadImage: React.FC<ImageProps> = ({ className, onLoad, alt, ..
   return (
     <div className="embla__slide">
       <div
-        className={'relative h-[60vh] embla__lazy-load'.concat(
+        className={`relative h-[60vh] ${className} embla__lazy-load`.concat(
           hasLoaded ? ' embla__lazy-load--has-loaded' : '',
         )}
       >
@@ -24,7 +24,10 @@ export const LazyLoadImage: React.FC<ImageProps> = ({ className, onLoad, alt, ..
         <LightboxImage>
           <Image
             fill
-            className={`embla__slide__img embla__lazy-load__img h-[60vh] ${className}`}
+            className={`embla__slide__img embla__lazy-load__img ${className}`}
+            style={{
+              objectFit: 'contain'
+            }}
             alt={alt}
             onLoad={onLoadCallback}
             {...props}

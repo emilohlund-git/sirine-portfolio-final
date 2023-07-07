@@ -83,6 +83,7 @@ const ImageCarousel: React.FC<Props> = ({ images, thumbs, mockup = false, size =
                     <LazyLoadImage key={index}
                       src={image}
                       alt="any"
+                      className={className}
                     />
                   )
                 })}

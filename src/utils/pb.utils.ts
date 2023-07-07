@@ -6,7 +6,7 @@ const getImage = (media: any, url: string) => {
 
 const getImageThumb = (media: any, url: string) => {
   return pb.files?.getUrl(media, url, {
-    thumb: '100x100'
+    thumb: '250x250'
   })
 }
 

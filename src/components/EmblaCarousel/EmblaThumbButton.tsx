@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 type PropType = {
@@ -24,7 +25,9 @@ export const Thumb: React.FC<PropType> = (props) => {
         <div className="embla-thumbs__slide__number">
           <span>{index + 1}</span>
         </div>
-        <img
+        <Image
+          width={100}
+          height={100}
           className="embla-thumbs__slide__img"
           src={imgSrc}
           alt="Your alt text"
