@@ -247,10 +247,11 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <div style={{
             backgroundImage: `url('${getImage(project, project.cover_image)}')`,
             backgroundPosition: 'center'
-          }} id="projects">
-            <GridBox background="transparent" className="backdrop-brightness-[15%]">
+          }} id="projects"
+          >
+            <GridBox variant="no-padding" background="transparent" className="backdrop-brightness-[15%] p-14">
               <GridBoxHeader>About</GridBoxHeader>
-              <div dangerouslySetInnerHTML={{ __html: project.about }} />
+              <div className="overflow-scroll max-h-[40rem]" dangerouslySetInnerHTML={{ __html: project.about }} />
             </GridBox>
           </div>
         </GridContainer>
