@@ -39,6 +39,7 @@ interface ProjectType extends DatabaseBase {
   slogan: string;
   research_goals: string;
   high_fidelity_mock_ups: string[];
+  gallery_documents?: string[];
   expand: {
     affinity_map: ProjectMediaContent;
     brand_colors: ProjectMediaContent;

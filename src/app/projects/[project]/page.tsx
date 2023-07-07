@@ -1,10 +1,9 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
-import Link from "next/link";
-import GridBox from "../../../components/GridBox";
+import GalleryProject from "../../../components/GalleryProject";
 import ProcessesProject from "../../../components/ProcessesProject";
+import ProjectPageBanner from "../../../components/ProjectPageBanner";
 import Spinner from "../../../components/Spinner";
-import { getImage } from "../../../utils/pb.utils";
 
 export const metadata: Metadata = {
   title: 'Sirine Harzallah - Portfolio',
@@ -58,23 +57,13 @@ export default async function Page({ params }: { params: { project: string } }) 
 
   return (
     <div className="flex flex-col items-center">
-      <div style={{
-        backgroundImage: `url('${getImage(project, project.cover_image)}')`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center'
-      }} id="projects" className="grid grid-cols-1 lg:grid-cols-1 h-[100vh] lg:h-[50vh] w-full">
-        <GridBox variant="center" background='transparent' className="bg-black bg-opacity-50">
-          <div className="text-sm breadcrumbs text-white">
-            <ul>
-              <li><Link href="/">Home</Link></li>
-              <li>{project.title}</li>
-            </ul>
-          </div>
-          <h1 className="font-extrabold text-[4rem] lg:text-[6rem] w-fit text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">{project.title}</h1>
-        </GridBox>
-      </div>
-      <ProcessesProject project={project} />
+      <ProjectPageBanner project={project} />
+      {project.gallery && project.gallery.length > 0
+        ?
+        <GalleryProject project={project} />
+        :
+        <ProcessesProject project={project} />
+      }
     </div >
   )
 }
