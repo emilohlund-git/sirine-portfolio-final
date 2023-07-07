@@ -6,6 +6,7 @@ import FigmaPrototype from './FigmaPrototype'
 import GridBox from './GridBox'
 import GridBoxHeader from './GridBoxHeader'
 import GridContainer from './GridContainer'
+import ProjectMedia from './ProjectMedia'
 import ResearchContainer from './ResearchContainer'
 
 type Props = {
@@ -58,22 +59,19 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       }
       {secondary_research &&
         <GridContainer cols={secondary_research?.filter((s) => s.expand.media.filter((sc) => sc.type === 'embed').length > 0).length > 0 ? 2 : 1}>
+          {projectMediaArrayHasEmbed(secondary_research) &&
+            <GridBox variant="center" position="end" background="white">
+            </GridBox>
+          }
           <GridBox background="transparent" variant="no-padding">
             {projectMediaArrayWithEmbed(secondary_research)?.map((research) =>
               <div key={research.id}>
                 {research.expand.media.map((media) =>
-                  <iframe key={media.id}
-                    className="lg:h-[40rem] h-[50vh] w-full" src={media.embed_src} allowFullScreen
-                    sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-                  />
+                  <ProjectMedia key={media.id} media={media} />
                 )}
               </div>
             )}
           </GridBox>
-          {projectMediaArrayHasEmbed(secondary_research) &&
-            <GridBox spotlight={true} variant="center" position="end" background="gray">
-            </GridBox>
-          }
         </GridContainer>
       }
       {findings &&

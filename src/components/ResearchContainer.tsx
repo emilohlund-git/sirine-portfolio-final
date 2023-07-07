@@ -17,7 +17,7 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
     <GridContainer cols={1}>
       <GridBox background="white" className="lg:h-[20rem]">
         <GridBoxHeader color="gray">{title}</GridBoxHeader>
-        {research.filter((r) => !r.expand.media.find((m) => m.type === 'embed')).map((research) =>
+        {research.map((research) =>
           <div className="flex flex-col break-all max-w-full" key={research.id}>
             <h4 className="font-light text-2xl mb-2">{research.content}</h4>
           </div>
