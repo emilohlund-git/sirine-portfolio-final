@@ -20,7 +20,7 @@ export const LazyLoadImage: React.FC<ImageProps> = ({ className, onLoad, alt, ..
           hasLoaded ? ' embla__lazy-load--has-loaded' : '',
         )}
       >
-        {!hasLoaded && <Spinner className="absolute top-1/2 -translate-y-1/2 z-[100] filter backdrop-grayscale backdrop-contrast-50 backdrop-saturate-50 backdrop-opacity-20" />}
+        {!hasLoaded && <Spinner className="absolute top-1/2 -translate-y-1/2 z-[100] filter backdrop-grayscale backdrop-contrast-50 backdrop-saturate-50 backdrop-opacity-20 backdrop-blur-sm" />}
         <LightboxImage>
           <Image
             fill
