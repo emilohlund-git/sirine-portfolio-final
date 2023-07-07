@@ -239,7 +239,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={3}>
           <GridBox variant="no-padding" background="transparent" className="col-span-2">
             <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel className="w-full h-full" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
+              <ImageCarousel className="h-[80vh]" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
             </div>
           </GridBox>
           <GridBox background="transparent">
