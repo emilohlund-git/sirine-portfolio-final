@@ -45,7 +45,9 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
             return (<GridBox key={index} variant={getVariant(mediaTypeGroup[0]?.type)} background="white" className={`flex flex-grow h-full ${mediaTypeGroup[0].type === 'pdf' && ''}`}>
               {shouldBeCarouselProjectMediaArray(mediaTypeGroup) && (
                 <div className="w-full h-[40vh] lg:h-full relative">
-                  <ImageCarousel images={mediaTypeGroup.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
+                  <ImageCarousel images={mediaTypeGroup.map((m) => getImage(m, m.media!))} className="h-[40rem]" style={{
+                    objectFit: 'contain'
+                  }} />
                 </div>)
               }
               <div className="w-full h-[40vh] lg:h-full relative">
