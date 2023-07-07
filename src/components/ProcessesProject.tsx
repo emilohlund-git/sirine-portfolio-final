@@ -77,7 +77,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative">
-              <ProjectMedia media={persona.expand.media[0]} className="h-[40rem]" />
+              <ProjectMedia media={persona.expand.media[0]} className="h-[40rem]" style={{
+                objectFit: 'contain'
+              }} />
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray" className="order-first">
@@ -94,7 +96,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-              <ProjectMedia media={affinity_map.expand.media[0]} className="h-[40rem]" />
+              <ProjectMedia media={affinity_map.expand.media[0]} className="h-[40rem]" style={{
+                objectFit: 'contain'
+              }} />
             </div>
           </GridBox>
         </GridContainer>
@@ -103,7 +107,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-              <ProjectMedia media={user_flow.expand.media[0]} className="h-[40rem]" />
+              <ProjectMedia media={user_flow.expand.media[0]} className="h-[40rem]" style={{
+                objectFit: 'contain'
+              }} />
             </div>
           </GridBox>
           <GridBox spotlight={true} background="gray">
@@ -120,7 +126,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white">
             <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-              <ProjectMedia media={navigation_map.expand.media[0]} className="h-[40rem]" />
+              <ProjectMedia media={navigation_map.expand.media[0]} className="h-[40rem]" style={{
+                objectFit: 'contain'
+              }} />
             </div>
           </GridBox>
         </GridContainer>
