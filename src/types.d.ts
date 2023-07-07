@@ -1,5 +1,3 @@
-declare module 'colorthief';
-
 interface DatabaseBase {
   collectionId: string;
   collectionName: string;
@@ -9,6 +7,7 @@ interface DatabaseBase {
 }
 
 type FileType = 'image' | 'embed' | 'pdf' | 'video';
+type ProjectImageOrientation = 'left' | 'right';
 
 interface ProjectMedia extends DatabaseBase {
   embed_src?: string;
@@ -23,11 +22,16 @@ interface ProjectMediaContent extends DatabaseBase {
   }
 }
 
+interface ProjectGallery extends DatabaseBase {
+  gallery_images: string[];
+  title: string;
+}
+
 interface ProjectType extends DatabaseBase {
   about: string;
   cover_image: string;
   key_insights: string;
-  orientation: 'left' | 'right';
+  orientation: ProjectImageOrientation;
   potential_solution: string;
   problem: string;
   gallery: string[];
@@ -40,7 +44,9 @@ interface ProjectType extends DatabaseBase {
   research_goals: string;
   high_fidelity_mock_ups: string[];
   gallery_documents?: string[];
+  galleries: string[];
   expand: {
+    galleries: ProjectGallery[];
     affinity_map: ProjectMediaContent;
     brand_colors: ProjectMediaContent;
     colors: {

@@ -40,7 +40,7 @@ async function getProject(projectId: string): Promise<ProjectType> {
     ,user_scenario,primary_research.media,secondary_research\
     .media,logo.media,brand_colors.media,iconography.media\
     ,persona.media,affinity_map.media,user_flow.media\
-    ,navigation_map.media'
+    ,navigation_map.media,galleries'
   }) as ProjectType;
 
   if (!res) {
@@ -52,13 +52,12 @@ async function getProject(projectId: string): Promise<ProjectType> {
 
 export default async function Page({ params }: { params: { project: string } }) {
   const project = await getProject(params.project);
-
   if (!project) return <Spinner />
 
   return (
     <div className="flex flex-col items-center">
       <ProjectPageBanner project={project} />
-      {project.gallery && project.gallery.length > 0
+      {project.gallery && project.gallery.length > 0 || project.galleries.length > 0
         ?
         <GalleryProject project={project} />
         :
