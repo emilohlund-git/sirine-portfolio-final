@@ -68,7 +68,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               shouldBeCarouselProjectMediaArray(findings) ?
                 <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
                 :
-                findings[0] ?
+                findings[0].media ?
                   <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
                   : null
             }
