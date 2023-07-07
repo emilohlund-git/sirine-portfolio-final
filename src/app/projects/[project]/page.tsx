@@ -1,8 +1,8 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
-import GalleryProject from "../../../components/GalleryProject";
-import ProcessesProject from "../../../components/ProcessesProject";
 import ProjectPageBanner from "../../../components/ProjectPageBanner";
+import GalleryProject from "../../../components/ProjectViews/GalleryProject";
+import ProcessesProject from "../../../components/ProjectViews/ProcessesProject";
 import Spinner from "../../../components/Spinner";
 
 export const metadata: Metadata = {

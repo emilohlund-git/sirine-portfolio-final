@@ -1,11 +1,11 @@
 import React from 'react';
-import { truncate } from '../utils/general.utils';
-import { getImage, getImageThumb } from '../utils/pb.utils';
-import ImageCarousel from './EmblaCarousel/ImageCarousel';
-import GridBox from './GridBox';
-import GridBoxHeader from './GridBoxHeader';
-import GridContainer from './GridContainer';
-import ImageCarousels from './ImageCarousels';
+import { truncate } from '../../utils/general.utils';
+import { getImage, getImageThumb } from '../../utils/pb.utils';
+import ImageCarousel from '../EmblaCarousel/ImageCarousel';
+import GridBox from '../GridBox';
+import GridBoxHeader from '../GridBoxHeader';
+import GridContainer from '../GridContainer';
+import ImageCarousels from '../ImageCarousels';
 
 type Props = {
   project: ProjectType;
@@ -32,7 +32,7 @@ const GalleryProject: React.FC<Props> = ({ project }) => {
       >
         <GridBox variant="no-padding" background="transparent" className="backdrop-brightness-[15%] p-14">
           <GridBoxHeader>About</GridBoxHeader>
-          <div className="overflow-scroll max-h-[40rem]" dangerouslySetInnerHTML={{ __html: project.about }} />
+          <div className="overflow-y-scroll max-h-[40rem]" dangerouslySetInnerHTML={{ __html: project.about }} />
           {project.gallery_documents?.map((document, index) => {
             return (
               <a key={document + index} style={{
