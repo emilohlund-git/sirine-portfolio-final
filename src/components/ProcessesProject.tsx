@@ -68,7 +68,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               shouldBeCarouselProjectMediaArray(findings) ?
                 <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
                 :
-                <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
+                findings[0] ?
+                  <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
+                  : null
             }
           </GridBox>
         </GridContainer>
