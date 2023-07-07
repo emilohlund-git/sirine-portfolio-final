@@ -244,10 +244,15 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               <ImageCarousel className="h-[80vh]" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
             </div>
           </GridBox>
-          <GridBox background="transparent">
-            <GridBoxHeader>About</GridBoxHeader>
-            <div dangerouslySetInnerHTML={{ __html: project.about }} />
-          </GridBox>
+          <div style={{
+            backgroundImage: `url('${getImage(project, project.cover_image)}')`,
+            backgroundPosition: 'center'
+          }} id="projects">
+            <GridBox background="transparent" className="backdrop-brightness-[15%]">
+              <GridBoxHeader>About</GridBoxHeader>
+              <div dangerouslySetInnerHTML={{ __html: project.about }} />
+            </GridBox>
+          </div>
         </GridContainer>
       )
       }
