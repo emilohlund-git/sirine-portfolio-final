@@ -14,7 +14,7 @@ export const revalidate = 60
 
 export default async function Home() {
   const projects = await pb.collection('projects').getFullList({
-    expand: 'affinity_map,brand_colors,colors,findings,font_family,high_fidelity_mock_ups,iconography,interactive_prototype,logo,navigation_map,persona,primary_research,secondary_research,user_flow,user_scenario'
+    expand: 'affinity_map,logo,logo.media,brand_colors,colors,findings,font_family,high_fidelity_mock_ups,iconography,interactive_prototype,logo,navigation_map,persona,primary_research,secondary_research,user_flow,user_scenario'
   }) as ProjectType[];
 
   return (

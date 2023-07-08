@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { truncate } from "../../utils/general.utils";
-import { getImage } from "../../utils/pb.utils";
+import { getImage, getImageThumb } from "../../utils/pb.utils";
 import { LazyLoadImage } from "../common/LazyLoadImage";
 
 type Props = {
@@ -25,7 +26,15 @@ const ProjectBanner: React.FC<Props> = ({ project, imageAlignment, href }) => {
         />
       </div>
       <div className={`w-full py-32 h-full flex gap-y-4 justify-center px-10 lg:px-40 flex-col border-[1px] bg-gradient-to-tr from-base-300 via-base-100 to-base-200 border-gray-800 order-2 ${imageAlignment === 'left' ? 'lg:order-2' : 'lg:order-1'}`}>
-        <h1 className="font-bold text-4xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400">
+        <h1 className="font-bold text-4xl w-fit text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400 flex items-center gap-x-3">
+          {project.expand.logo?.expand.media &&
+            <Image
+              width={30}
+              height={30}
+              src={getImageThumb(project.expand.logo.expand.media[0], project.expand.logo.expand.media[0].media!)}
+              alt={project.title}
+            />
+          }
           {project.title}
         </h1>
         <div className="font-normal text-md w-full text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-400"
