@@ -21,7 +21,7 @@ const ImageCarousels: React.FC<Props> = ({ slides, thumbs }) => {
   return (
     <div className="relative">
       <div className="absolute join lg:join-horizontal rounded-none top-0 left-0 z-[100]">
-        {slides.map((g, index) => <GradientButton className={`h-20 bg-black ${currentGallery === g.title ? 'bg-opacity-90' : 'bg-opacity-80'}`} onClick={() => setCurrentGallery(g.title)} key={index} aria-label={g.title}>{g.title}</GradientButton>)}
+        {slides.map((g, index) => <GradientButton className={`h-14 text-xs lg:text-lg lg:h-20 bg-black ${currentGallery === g.title ? 'bg-opacity-90' : 'bg-opacity-80'}`} onClick={() => setCurrentGallery(g.title)} key={index} aria-label={g.title}>{g.title}</GradientButton>)}
       </div>
       {slides.filter((g) => g.title === currentGallery).map((g, index) => {
         return (

@@ -45,7 +45,7 @@ const GalleriesProject: React.FC<Props> = ({ project }) => {
         backgroundPosition: 'center'
       }} id="projects"
       >
-        <GridBox variant="no-padding" background="transparent" className="backdrop-brightness-[15%] p-14">
+        <GridBox variant="no-padding" background="transparent" className="backdrop-brightness-[15%] p-8 lg:p-14">
           <GridBoxHeader>About</GridBoxHeader>
           <div className="overflow-y-scroll max-h-[40rem]" dangerouslySetInnerHTML={{ __html: project.about }} />
           {project.gallery_documents?.map((document, index) => {
