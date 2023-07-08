@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import ImageCarousel from './EmblaCarousel/ImageCarousel';
+import GradientButton from './GradientButton';
 
 type Props = {
   slides: {
@@ -19,8 +20,8 @@ const ImageCarousels: React.FC<Props> = ({ slides, thumbs }) => {
 
   return (
     <div className="relative">
-      <div className="absolute join join-vertical lg:join-horizontal rounded-none top-0 left-0 z-[100]">
-        {slides.map((g, index) => <button onClick={() => setCurrentGallery(g.title)} key={index} className={`btn btn-outline hover:bg-white text-black btn-lg join-item ${currentGallery === g.title ? 'bg-white' : ''}`} aria-label={g.title}>{g.title}</button>)}
+      <div className="absolute join lg:join-horizontal rounded-none top-0 left-0 z-[100]">
+        {slides.map((g, index) => <GradientButton className={`h-20 bg-black ${currentGallery === g.title ? 'bg-opacity-90' : 'bg-opacity-80'}`} onClick={() => setCurrentGallery(g.title)} key={index} aria-label={g.title}>{g.title}</GradientButton>)}
       </div>
       {slides.filter((g) => g.title === currentGallery).map((g, index) => {
         return (
