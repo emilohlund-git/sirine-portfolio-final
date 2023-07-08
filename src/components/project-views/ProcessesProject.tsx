@@ -206,7 +206,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <GridContainer cols={[...iconography.map((c) => c.expand.media).flat(1), ...font_family].length}>
             {[...iconography.map((c) => c.expand.media).flat(1), ...font_family].map((m, index) => {
               return (
-                <GridBox key={index} variant="no-padding" background="white" className="p-10 h-[40vh] lg:h-full order-last lg:order-last">
+                <GridBox key={index} variant="default" background="white" className="p-10 h-[40vh] lg:h-full order-last lg:order-last">
                   <div key={m.id} className="w-full h-[40rem] lg:h-full relative">
                     <ProjectMedia media={m} className="h-[40rem]" style={{
                       objectFit: 'contain'
