@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import ContactModal from '../components/ContactModal'
+import ScrollToTopButton from '../components/ScrollToTopButton'
 import './globals.css'
 import Providers from './providers'
 
@@ -45,6 +46,7 @@ export default function RootLayout({
           <ContactModal />
           {children}
           <Analytics />
+          <ScrollToTopButton />
         </Providers>
       </body>
     </html>
