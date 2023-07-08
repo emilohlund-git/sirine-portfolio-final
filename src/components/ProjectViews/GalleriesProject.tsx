@@ -1,21 +1,43 @@
 import React from 'react';
 import { truncate } from '../../utils/general.utils';
 import { getImage, getImageThumb } from '../../utils/pb.utils';
-import ImageCarousel from '../EmblaCarousel/ImageCarousel';
 import GridBox from '../GridBox';
 import GridBoxHeader from '../GridBoxHeader';
 import GridContainer from '../GridContainer';
+import ImageCarousels from '../ImageCarousels';
 
 type Props = {
   project: ProjectType;
 }
 
-const GalleryProject: React.FC<Props> = ({ project }) => {
+const GalleriesProject: React.FC<Props> = ({ project }) => {
+  const { galleries } = project.expand;
+  const slidesArray: {
+    title: string;
+    images: string[];
+  }[] = [];
+  const thumbsArray: {
+    title: string;
+    images: string[];
+  }[] = [];
+  for (const gallery of galleries) {
+    const urls = {
+      title: gallery.title,
+      images: gallery.gallery_images.map((g) => getImage(gallery, g))
+    }
+    const thumbsUrls = {
+      title: gallery.title,
+      images: gallery.gallery_images.map((g) => getImageThumb(gallery, g))
+    }
+    slidesArray.push(urls);
+    thumbsArray.push(thumbsUrls);
+  }
+
   return (
     <GridContainer cols={3}>
       <GridBox variant="no-padding" background="transparent" className="col-span-2">
         <div className="w-full h-full lg:h-full relative">
-          <ImageCarousel className="h-[80vh]" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
+          <ImageCarousels slides={slidesArray} thumbs={thumbsArray} />
         </div>
       </GridBox>
       <div style={{
@@ -42,4 +64,4 @@ const GalleryProject: React.FC<Props> = ({ project }) => {
   )
 }
 
-export default GalleryProject
+export default GalleriesProject

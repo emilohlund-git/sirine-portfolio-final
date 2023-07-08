@@ -1,6 +1,7 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
 import ProjectPageBanner from "../../../components/ProjectPageBanner";
+import GalleriesProject from "../../../components/ProjectViews/GalleriesProject";
 import GalleryProject from "../../../components/ProjectViews/GalleryProject";
 import ProcessesProject from "../../../components/ProjectViews/ProcessesProject";
 import Spinner from "../../../components/Spinner";
@@ -57,11 +58,14 @@ export default async function Page({ params }: { params: { project: string } }) 
   return (
     <div className="flex flex-col items-center">
       <ProjectPageBanner project={project} />
-      {project.gallery && project.gallery.length > 0 || project.galleries.length > 0
+      {project.gallery && project.gallery.length > 0
         ?
         <GalleryProject project={project} />
         :
-        <ProcessesProject project={project} />
+        project.galleries.length > 0 ?
+          <GalleriesProject project={project} />
+          :
+          <ProcessesProject project={project} />
       }
     </div >
   )

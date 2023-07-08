@@ -1,24 +1,28 @@
-import React from 'react';
-import { getImage, getImageThumb } from '../utils/pb.utils';
+'use client'
+
+import React, { useState } from 'react';
 import ImageCarousel from './EmblaCarousel/ImageCarousel';
 
 type Props = {
-  galleries: ProjectGallery[];
+  slides: {
+    title: string;
+    images: string[];
+  }[];
+  thumbs: {
+    title: string;
+    images: string[];
+  }[];
 }
 
-const ImageCarousels: React.FC<Props> = ({ galleries }) => {
-  const slidesArray: string[] = [];
-  const thumbsArray: string[] = [];
-  for (const gallery of galleries) {
-    const urls = gallery.gallery_images.map((g) => getImage(gallery, g));
-    const thumbsUrls = gallery.gallery_images.map((g) => getImageThumb(gallery, g));
-    slidesArray.push(...urls);
-    thumbsArray.push(...thumbsUrls);
-  }
+const ImageCarousels: React.FC<Props> = ({ slides, thumbs }) => {
+  const [currentGallery, setCurrentGallery] = useState(slides[0].title);
 
   return (
-    <div>
-      <ImageCarousel className="h-[80vh]" images={slidesArray} thumbs={thumbsArray} />
+    <div className="relative">
+      <div className="absolute top-0 left-0 z-[9999]">
+        {slides.map((g, index) => <button onClick={() => setCurrentGallery(g.title)} key={index} className={`btn btn-lg rounded-none btn-outline ${currentGallery === g.title ? 'btn-disabled' : ''}`}>{g.title}</button>)}
+      </div>
+      <ImageCarousel className="h-[80vh]" images={slides.find((g) => g.title === currentGallery)?.images} thumbs={thumbs.find((g) => g.title === currentGallery)?.images} />
     </div>
   )
 }
