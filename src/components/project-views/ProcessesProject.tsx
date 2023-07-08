@@ -48,7 +48,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBox variant="center" spotlight={true} background="transparent" style={{
               backgroundColor: project.expand.colors.project_theme_color
             }}>
-              <GridBoxHeader><h1 className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UX</h1> Research</GridBoxHeader>
+              <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UX</span> Research</GridBoxHeader>
             </GridBox>
             <GridBox spotlight={true} background="transparent">
               <GridBoxHeader>Research Goals</GridBoxHeader>
@@ -84,8 +84,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       {persona && affinity_map && user_flow && navigation_map &&
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
-            <div className="w-full h-[40vh] lg:h-full relative">
-              <ProjectMedia media={persona.expand.media[0]} className="h-[40rem]" style={{
+            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
+              <ProjectMedia media={persona.expand.media[0]} className="h-full lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -103,8 +103,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: affinity_map.content }} />
           </GridBox>
           <GridBox variant="no-padding" background="white">
-            <div className="w-full h-[40vh] lg:h-full relative bg-[#ededf1]">
-              <ProjectMedia media={affinity_map.expand.media[0]} className="h-[40rem]" style={{
+            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
+              <ProjectMedia media={affinity_map.expand.media[0]} className="h-full lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -114,8 +114,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       {user_flow &&
         <GridContainer cols={2}>
           <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
-            <div className="w-full h-[40vh] lg:h-full relative bg-[#fff]">
-              <ProjectMedia media={user_flow.expand.media[0]} className="h-[40rem]" style={{
+            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
+              <ProjectMedia media={user_flow.expand.media[0]} className="h-full lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -133,8 +133,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: navigation_map.content }} />
           </GridBox>
           <GridBox variant="no-padding" background="white">
-            <div className="w-full h-[40vh] lg:h-full relative bg-[#fdfdfd]">
-              <ProjectMedia media={navigation_map.expand.media[0]} className="h-[40rem]" style={{
+            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
+              <ProjectMedia media={navigation_map.expand.media[0]} className="h-full lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -146,7 +146,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <GridBox variant="center" background="transparent" style={{
             backgroundColor: project.expand.colors.project_theme_color
           }}>
-            <GridBoxHeader color='white'><h1 className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 text-white opacity-20 select-none">UI</h1> Brand Guidelines</GridBoxHeader>
+            <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 text-white opacity-20 select-none">UI</span> Brand Guidelines</GridBoxHeader>
           </GridBox>
           <GridBox background="transparent">
             <GridBoxHeader>About</GridBoxHeader>
@@ -159,7 +159,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <GridContainer cols={logo?.expand.media.filter((media) => media.type === 'image').length / 2} className="order-last lg:order-first">
             {logo.expand.media.filter((media) => media.type === 'image').map((media, index) =>
               <GridBox key={media.id} variant="no-padding" background="white" className="p-10">
-                <div className="w-full h-[40vh] lg:h-full relative">
+                <div className="w-full h-[20rem] lg:h-full relative">
                   <ProjectMedia media={media} className="h-[20rem] object-contain" style={{
                     objectFit: 'contain'
                   }} />
@@ -188,7 +188,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           </GridBox>
           <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
             {brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
-              <div key={media.id} className="w-full h-[40vh] lg:h-full relative">
+              <div key={media.id} className="w-full h-[40rem] lg:h-full relative">
                 <ProjectMedia media={media} className="h-[40rem]" style={{
                   objectFit: 'contain'
                 }} />

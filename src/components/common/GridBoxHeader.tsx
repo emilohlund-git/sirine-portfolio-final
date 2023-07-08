@@ -4,12 +4,14 @@ type Props = {
   children: ReactNode;
   color?: 'white' | 'gray' | 'gradient';
   size?: 'large' | 'default';
+  className?: string;
 }
 
 const GridBoxHeader: React.FC<Props> = ({
   children,
   color = 'white',
-  size = 'default'
+  size = 'default',
+  className
 }) => {
   const getHeaderStyles = () => {
     let styles = '';
@@ -21,7 +23,7 @@ const GridBoxHeader: React.FC<Props> = ({
     return styles;
   }
   return (
-    <h1 className={`font-extrabold relative w-fit text-transparent bg-clip-text bg-gradient-to-r mb-4 ${getHeaderStyles()}`}>{children}</h1>
+    <h1 className={`font-extrabold relative w-fit text-transparent bg-clip-text bg-gradient-to-r mb-4 ${getHeaderStyles()} ${className}`}>{children}</h1>
   )
 }
 
