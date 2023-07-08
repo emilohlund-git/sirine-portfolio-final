@@ -26,7 +26,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
     iconography,
     font_family,
     brand_colors,
-    interactive_prototype
+    interactive_prototype,
+    research_image
   } = project.expand;
 
   return (
@@ -48,9 +49,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               <GridBoxHeader>Research</GridBoxHeader>
               <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
             </GridBox>
-            {project.expand.research_image &&
+            {research_image &&
               <GridBox variant='no-padding' background="transparent">
-                <ProjectMedia media={project.expand.research_image} className="h-full w-full" />
+                <ProjectMedia media={research_image} className="h-full w-full" />
               </GridBox>
             }
           </GridContainer>
