@@ -1,5 +1,5 @@
 .embla {
-  --slide-spacing: 1rem;
+  --slide-spacing: 2px;
   --slide-size: 100%;
   --slide-height: 100%;
 }
@@ -59,7 +59,7 @@
   bottom: 0;
 }
 .embla-thumbs {
-  --thumbs-slide-spacing: 0.8rem;
+  --thumbs-slide-spacing: 2px;
   --thumbs-slide-height: 9rem;
   margin-top: var(--thumbs-slide-spacing);
 }
