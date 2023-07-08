@@ -53,7 +53,7 @@ export default async function Home() {
         <Contact />
       </FadeIn>
       <Divider />
-      <div className="flex flex-col lg:flex-row text-center lg:justify-between w-full lg:px-60 text-sm mb-20">
+      <div className="flex flex-col lg:flex-row text-center items-center lg:justify-between w-full lg:px-60 text-sm mb-20">
         <p>© Sirine Harzzalah {new Date().getFullYear()}</p>
         <p><Link className="flex gap-x-1 items-center" target="_blank" referrerPolicy="no-referrer" href="https://www.linkedin.com/in/sirine-harzallah-032930226
 "><AiOutlineLinkedin /> LinkedIn</Link></p>
