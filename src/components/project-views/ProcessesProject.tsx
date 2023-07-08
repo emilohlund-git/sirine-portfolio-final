@@ -1,6 +1,6 @@
 import React from 'react'
 import { projectHasLogoVideo, shouldBeCarouselProjectMediaArray } from '../../utils/array.utils'
-import { getImage, getImageThumb } from '../../utils/pb.utils'
+import { getImage } from '../../utils/pb.utils'
 import FigmaPrototype from '../FigmaPrototype'
 import ImageCarousel from '../carousel/ImageCarousel'
 import GridBox from '../common/GridBox'
@@ -75,7 +75,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
                 <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
                 :
                 findings[0].media ?
-                  <ProjectMedia media={findings[0]} className="h-[40rem]" style={{
+                  <ProjectMedia media={findings[0]} className="h-[30rem] lg:h-[40rem]" style={{
                     objectFit: 'contain'
                   }} />
                   : null
@@ -85,9 +85,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       }
       {persona && affinity_map && user_flow && navigation_map &&
         <GridContainer cols={2}>
-          <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
-            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
-              <ProjectMedia media={persona.expand.media[0]} className="h-full lg:h-[40rem]" style={{
+          <GridBox variant="no-padding" background="white" className="order-last lg:order-first lg:p-10">
+            <div className="w-full h-full relative">
+              <ProjectMedia media={persona.expand.media[0]} className="h-[30rem] lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -104,9 +104,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBoxHeader>Affinity Map</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: affinity_map.content }} />
           </GridBox>
-          <GridBox variant="no-padding" background="white">
-            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
-              <ProjectMedia media={affinity_map.expand.media[0]} className="h-full lg:h-[40rem]" style={{
+          <GridBox variant="no-padding" background="white" className="lg:p-10">
+            <div className="w-full h-full relative">
+              <ProjectMedia media={affinity_map.expand.media[0]} className="h-[30rem] lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -115,9 +115,9 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       }
       {user_flow &&
         <GridContainer cols={2}>
-          <GridBox variant="no-padding" background="white" className="order-last lg:order-first">
-            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
-              <ProjectMedia media={user_flow.expand.media[0]} className="h-full lg:h-[40rem]" style={{
+          <GridBox variant="no-padding" background="white" className="order-last lg:order-first lg:p-10">
+            <div className="w-full h-full relative">
+              <ProjectMedia media={user_flow.expand.media[0]} className="h-[30rem] lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -135,8 +135,8 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <div dangerouslySetInnerHTML={{ __html: navigation_map.content }} />
           </GridBox>
           <GridBox variant="no-padding" background="white">
-            <div className="w-full h-[40rem] relative bg-[#fdfdfd]">
-              <ProjectMedia media={navigation_map.expand.media[0]} className="h-full lg:h-[40rem]" style={{
+            <div className="w-full h-full relative">
+              <ProjectMedia media={navigation_map.expand.media[0]} className="h-[30rem] lg:h-[40rem]" style={{
                 objectFit: 'contain'
               }} />
             </div>
@@ -188,10 +188,10 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBoxHeader>Brand Colors</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: brand_colors.content }} />
           </GridBox>
-          <GridBox variant="no-padding" background="white" className="h-[40vh] lg:h-full">
+          <GridBox variant="no-padding" background="white" className="h-full lg:p-10">
             {brand_colors.expand.media.filter((media) => media.type === 'image').map((media) =>
-              <div key={media.id} className="w-full h-[40rem] lg:h-full relative">
-                <ProjectMedia media={media} className="h-[40rem]" style={{
+              <div key={media.id} className="w-full h-full relative">
+                <ProjectMedia media={media} className="h-[30rem]" style={{
                   objectFit: 'contain'
                 }} />
               </div>
@@ -245,26 +245,6 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             </GridBox>
           </div>
         </>
-      }
-      {project.gallery && project.gallery.length > 0 && (
-        <GridContainer cols={3}>
-          <GridBox variant="no-padding" background="transparent" className="col-span-2">
-            <div className="w-full h-full lg:h-full relative">
-              <ImageCarousel className="h-[80vh]" images={project.gallery.map((g) => getImage(project, g))} thumbs={project.gallery.map((g) => getImageThumb(project, g))} />
-            </div>
-          </GridBox>
-          <div style={{
-            backgroundImage: `url('${getImage(project, project.cover_image)}')`,
-            backgroundPosition: 'center'
-          }} id="projects"
-          >
-            <GridBox variant="no-padding" background="transparent" className="backdrop-brightness-[15%] p-14">
-              <GridBoxHeader>About</GridBoxHeader>
-              <div className="overflow-scroll max-h-[40rem]" dangerouslySetInnerHTML={{ __html: project.about }} />
-            </GridBox>
-          </div>
-        </GridContainer>
-      )
       }
     </>
   )
