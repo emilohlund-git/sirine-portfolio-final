@@ -31,11 +31,11 @@ const ResearchContainer: React.FC<Props> = ({ research, title }) => {
 
   return (
     <GridContainer cols={10} className="flex">
-      <GridBox background="white" className="grid col-span-10 h-[20rem] min-h-[20rem] break-words">
+      <GridBox background="white" className="grid col-span-10 h-[22rem] min-h-[22rem] max-h-[22rem] break-words">
         <GridBoxHeader color="gray">{title}</GridBoxHeader>
         {research.map((research) =>
-          <div className="flex flex-col break-all max-w-full" key={research.id}>
-            <h4 className="font-light text-2xl mb-2 break-words">{research.content}</h4>
+          <div className="flex flex-col max-w-full break-normal" key={research.id}>
+            <h4 className="font-light text-2xl mb-2">{research.content}</h4>
           </div>
         )}
       </GridBox>
