@@ -1,8 +1,19 @@
 /** @type {import('next').NextConfig} */
+const withPWAInit = require("next-pwa");
+
+const withPWA = withPWAInit({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  buildExcludes: ["app-build-manifest.json"],
+});
+
 const nextConfig = {
+  reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
+
     return config;
   },
   images: {
@@ -12,4 +23,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withPWA(nextConfig);

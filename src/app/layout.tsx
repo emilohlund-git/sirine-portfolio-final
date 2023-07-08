@@ -11,6 +11,8 @@ const raleway = Raleway({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Sirine Harzallah - Portfolio',
   description: 'Personal portfolio website of Sirine Harzallah',
+  manifest: '/manifest.json',
+  themeColor: '#1e1e1e',
   icons: [
     {
       rel: "icon",
