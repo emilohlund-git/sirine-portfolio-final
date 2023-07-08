@@ -19,8 +19,8 @@ const ImageCarousels: React.FC<Props> = ({ slides, thumbs }) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-0 left-0 z-[9999]">
-        {slides.map((g, index) => <button onClick={() => setCurrentGallery(g.title)} key={index} className={`btn btn-lg rounded-none btn-outline ${currentGallery === g.title ? 'btn-disabled' : ''}`}>{g.title}</button>)}
+      <div className="absolute top-0 left-0 z-[100]">
+        {slides.map((g, index) => <button onClick={() => setCurrentGallery(g.title)} key={index} className={`btn text-black btn-lg rounded-none btn-outline ${currentGallery === g.title ? 'btn-active' : ''}`}>{g.title}</button>)}
       </div>
       <ImageCarousel className="h-[80vh]" images={slides.find((g) => g.title === currentGallery)?.images} thumbs={thumbs.find((g) => g.title === currentGallery)?.images} />
     </div>
