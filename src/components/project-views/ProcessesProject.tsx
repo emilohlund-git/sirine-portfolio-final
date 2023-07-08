@@ -48,7 +48,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBox variant="center" spotlight={true} background="transparent" style={{
               backgroundColor: project.expand.colors.project_theme_color
             }}>
-              <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UX</span> Research</GridBoxHeader>
+              <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UX</span> Research</GridBoxHeader>
             </GridBox>
             <GridBox spotlight={true} background="transparent">
               <GridBoxHeader>Research Goals</GridBoxHeader>
@@ -146,7 +146,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
           <GridBox variant="center" background="transparent" style={{
             backgroundColor: project.expand.colors.project_theme_color
           }}>
-            <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 text-white opacity-20 select-none">UI</span> Brand Guidelines</GridBoxHeader>
+            <GridBoxHeader className="text-white text-[5rem]"><span className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UI</span> Brand Guidelines</GridBoxHeader>
           </GridBox>
           <GridBox background="transparent">
             <GridBoxHeader>About</GridBoxHeader>
