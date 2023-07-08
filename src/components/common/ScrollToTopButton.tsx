@@ -14,7 +14,7 @@ const ScrollToTopButton = (props: Props) => {
   }
 
   return (
-    <GradientButton position='fixed' onClick={() => scrollToTop()} className="btn btn-square m-8 right-0 bottom-0">
+    <GradientButton role="button" position='fixed' onClick={() => scrollToTop()} className="btn btn-square m-8 right-0 bottom-0">
       <RiArrowUpDoubleLine className="w-8 h-8 pb-2" />
     </GradientButton>
   )

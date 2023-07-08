@@ -26,7 +26,7 @@ export default async function Home() {
               <Image src='/sirine.jpg' height={100} width={100} alt="Sirine" className="rounded-full mb-8 border-gray-600 border-[2px] shadow-lg" />
             </div>
             <h1 className="font-extrabold text-4xl">Sirine <span className="font-light">Harzallah</span></h1>
-            <h3 className="font-extrabold text-2xl">UI/UX <span className="font-light">Designer</span></h3>
+            <h2 className="font-extrabold text-2xl">UI/UX <span className="font-light">Designer</span></h2>
           </div>
           <GradientButton href="#projects" className="mt-12">
             Projects <AiOutlineProject />
