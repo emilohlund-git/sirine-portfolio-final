@@ -19,7 +19,9 @@ export async function POST(request: NextRequest) {
   const emailHtml = `
   <html lang="en">  
     <body>
+      <b>From:\n</b>
       <h2>${email}</h2>
+      <b>Message:\n</b>
       <p>${message}</p>    
     </body>
   </html>
@@ -27,14 +29,12 @@ export async function POST(request: NextRequest) {
 
   const options = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+    to: "Contact Form <noreply@sirine.online>",
     subject: 'Message from Contact Form',
     html: emailHtml,
   };
 
-  const info = await transporter.sendMail(options);
-
-  console.log(info);
+  await transporter.sendMail(options);
 
   return NextResponse.json({
     response: 'ok'
