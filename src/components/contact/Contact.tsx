@@ -18,7 +18,7 @@ const Contact = (props: Props) => {
         <>
           <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500">Ready to embark on your project journey?</h1>
           <label htmlFor="contact_modal" >
-            <GradientButton className="mt-12">
+            <GradientButton role="button" className="mt-12">
               Get in Touch <AiOutlineMail />
             </GradientButton>
           </label>
