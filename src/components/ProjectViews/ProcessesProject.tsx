@@ -166,7 +166,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             :
             null
           }
-          <GridBox variant="no-padding" spotlight={true} background="gray" className="order-first lg:order-last p-14">
+          <GridBox variant="no-padding" spotlight={true} background="gray" className={`order-first lg:order-last ${projectHasLogoVideo(project) ? 'p-14' : 'py-20 px-10 lg:px-40'}`}>
             <GridBoxHeader>Logo</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: logo.content }} />
           </GridBox>

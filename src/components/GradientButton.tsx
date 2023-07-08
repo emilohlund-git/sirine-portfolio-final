@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode;
   href?: string;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const GradientButton: React.FC<Props> = ({ children, href, className, onClick }) => {
