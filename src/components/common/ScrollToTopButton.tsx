@@ -1,6 +1,7 @@
 'use client'
 
-import { RiArrowUpDoubleLine } from 'react-icons/ri'
+import { RiArrowUpDoubleLine } from 'react-icons/ri';
+import GradientButton from './GradientButton';
 
 type Props = {}
 
@@ -13,9 +14,9 @@ const ScrollToTopButton = (props: Props) => {
   }
 
   return (
-    <button onClick={() => scrollToTop()} className="btn btn-square m-8 right-0 bottom-0 fixed">
-      <RiArrowUpDoubleLine className="w-8 h-8" />
-    </button>
+    <GradientButton position='fixed' onClick={() => scrollToTop()} className="btn btn-square m-8 right-0 bottom-0">
+      <RiArrowUpDoubleLine className="w-8 h-8 pb-2" />
+    </GradientButton>
   )
 }
 
