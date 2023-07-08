@@ -69,13 +69,15 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBoxHeader>Key Insights</GridBoxHeader>
             <div dangerouslySetInnerHTML={{ __html: project.key_insights }} />
           </GridBox>
-          <GridBox variant="no-padding" background="transparent">
+          <GridBox variant={'no-padding'} background="white" className={`${!shouldBeCarouselProjectMediaArray(findings) ? 'p-14' : ''}`}>
             {
               shouldBeCarouselProjectMediaArray(findings) ?
                 <ImageCarousel images={findings.map((m) => getImage(m, m.media!))} className="h-[40rem]" />
                 :
                 findings[0].media ?
-                  <ProjectMedia media={findings[0]} className="h-[40rem] object-contain" />
+                  <ProjectMedia media={findings[0]} className="h-[40rem]" style={{
+                    objectFit: 'contain'
+                  }} />
                   : null
             }
           </GridBox>
