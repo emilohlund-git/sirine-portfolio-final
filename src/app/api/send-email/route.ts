@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   const emailHtml = `
   <html lang="en">  
     <body>
-      <h1>${email}</h1>
+      <h2>${email}</h2>
       <p>${message}</p>    
     </body>
   </html>
@@ -32,7 +32,9 @@ export async function POST(request: NextRequest) {
     html: emailHtml,
   };
 
-  transporter.sendMail(options);
+  const info = await transporter.sendMail(options);
+
+  console.log(info);
 
   return NextResponse.json({
     response: 'ok'

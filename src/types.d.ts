@@ -46,6 +46,7 @@ interface ProjectType extends DatabaseBase {
   gallery_documents?: string[];
   galleries: string[];
   expand: {
+    research_image: ProjectMedia;
     galleries: ProjectGallery[];
     affinity_map: ProjectMediaContent;
     brand_colors: ProjectMediaContent;

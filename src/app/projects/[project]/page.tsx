@@ -41,7 +41,7 @@ async function getProject(projectId: string): Promise<ProjectType> {
     ,user_scenario,primary_research.media,secondary_research\
     .media,logo.media,brand_colors.media,iconography.media\
     ,persona.media,affinity_map.media,user_flow.media\
-    ,navigation_map.media,galleries'
+    ,navigation_map.media,galleries,research_image'
   }) as ProjectType;
 
   if (!res) {

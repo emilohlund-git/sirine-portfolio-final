@@ -48,6 +48,11 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               <GridBoxHeader>Research</GridBoxHeader>
               <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
             </GridBox>
+            {project.expand.research_image &&
+              <GridBox variant='no-padding' background="transparent">
+                <ProjectMedia media={project.expand.research_image} className="h-full w-full" />
+              </GridBox>
+            }
           </GridContainer>
         </>
       }
