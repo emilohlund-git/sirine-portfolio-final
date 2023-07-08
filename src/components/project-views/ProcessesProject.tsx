@@ -48,7 +48,7 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
             <GridBox variant="center" spotlight={true} background="gray">
               <GridBoxHeader>Research</GridBoxHeader>
             </GridBox>
-            <GridBox spotlight={true} background="gray">
+            <GridBox spotlight={true} background="transparent">
               <GridBoxHeader>Research Goals</GridBoxHeader>
               <div dangerouslySetInnerHTML={{ __html: project.research_goals }} />
             </GridBox>
