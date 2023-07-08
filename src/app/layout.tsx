@@ -5,6 +5,7 @@ import ScrollToTopButton from '../components/common/ScrollToTopButton'
 import ContactModal from '../components/contact/ContactModal'
 import './globals.css'
 import Providers from './providers'
+import Pwa from './pwa'
 
 const raleway = Raleway({ subsets: ['latin'] })
 
@@ -50,6 +51,7 @@ export default function RootLayout({
           <Analytics />
           <ScrollToTopButton />
         </Providers>
+        <Pwa />
       </body>
     </html>
   )
