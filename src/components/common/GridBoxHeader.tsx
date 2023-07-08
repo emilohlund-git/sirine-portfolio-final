@@ -21,7 +21,7 @@ const GridBoxHeader: React.FC<Props> = ({
     return styles;
   }
   return (
-    <h1 className={`font-extrabold w-fit text-transparent bg-clip-text bg-gradient-to-r mb-4 ${getHeaderStyles()}`}>{children}</h1>
+    <h1 className={`font-extrabold relative w-fit text-transparent bg-clip-text bg-gradient-to-r mb-4 ${getHeaderStyles()}`}>{children}</h1>
   )
 }
 

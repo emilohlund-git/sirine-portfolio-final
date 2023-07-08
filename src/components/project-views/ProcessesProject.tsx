@@ -39,14 +39,16 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
               <GridBoxHeader>Problem</GridBoxHeader>
               <div dangerouslySetInnerHTML={{ __html: project.problem }} />
             </GridBox>
-            <GridBox spotlight={true} background='gray'>
+            <GridBox spotlight={true} background='gray' >
               <GridBoxHeader>Potential Solution</GridBoxHeader>
               <div dangerouslySetInnerHTML={{ __html: project.potential_solution }} />
             </GridBox>
           </GridContainer >
           <GridContainer cols={2}>
-            <GridBox variant="center" spotlight={true} background="gray">
-              <GridBoxHeader>Research</GridBoxHeader>
+            <GridBox variant="center" spotlight={true} background="transparent" style={{
+              backgroundColor: project.expand.colors.project_theme_color
+            }}>
+              <GridBoxHeader><h1 className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 select-none text-white opacity-20">UX</h1> Research</GridBoxHeader>
             </GridBox>
             <GridBox spotlight={true} background="transparent">
               <GridBoxHeader>Research Goals</GridBoxHeader>
@@ -141,8 +143,10 @@ const ProcessesProject: React.FC<Props> = ({ project }) => {
       }
       {project.problem &&
         <GridContainer cols={2}>
-          <GridBox variant="center" background="white">
-            <GridBoxHeader color='gray'>Brand Guidelines</GridBoxHeader>
+          <GridBox variant="center" background="transparent" style={{
+            backgroundColor: project.expand.colors.project_theme_color
+          }}>
+            <GridBoxHeader color='white'><h1 className="absolute top-1/2 -translate-y-1/2 text-[25rem] text-opacity-50 text-white opacity-20 select-none">UI</h1> Brand Guidelines</GridBoxHeader>
           </GridBox>
           <GridBox background="transparent">
             <GridBoxHeader>About</GridBoxHeader>
