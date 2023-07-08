@@ -1,10 +1,10 @@
 import pb from "@/utils/pb.config";
 import { Metadata } from "next";
-import ProjectPageBanner from "../../../components/ProjectPageBanner";
-import GalleriesProject from "../../../components/ProjectViews/GalleriesProject";
-import GalleryProject from "../../../components/ProjectViews/GalleryProject";
-import ProcessesProject from "../../../components/ProjectViews/ProcessesProject";
-import Spinner from "../../../components/Spinner";
+import Spinner from "../../../components/common/Spinner";
+import GalleriesProject from "../../../components/project-views/GalleriesProject";
+import GalleryProject from "../../../components/project-views/GalleryProject";
+import ProcessesProject from "../../../components/project-views/ProcessesProject";
+import ProjectPageBanner from "../../../components/project-views/ProjectPageBanner";
 
 export const metadata: Metadata = {
   title: 'Sirine Harzallah - Portfolio',

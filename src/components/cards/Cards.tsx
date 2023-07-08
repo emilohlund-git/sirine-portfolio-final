@@ -1,9 +1,9 @@
 'use client'
 
+import BrandingIcon from '../icons/BrandingIcon'
+import DesignIcon from '../icons/DesignIcon'
+import ProductDesign from '../icons/ProductDesignIcon'
 import { Card } from './Card'
-import ProductDesign from './ProductDesign'
-import BrandingIcon from './icons/BrandingIcon'
-import DesignIcon from './icons/DesignIcon'
 
 type Props = {}
 

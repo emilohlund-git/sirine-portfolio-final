@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
-import { truncate } from '../utils/general.utils';
-import { getImage } from '../utils/pb.utils';
-import { LazyLoadImage } from './LazyLoadImage';
+import { truncate } from '../../utils/general.utils';
+import { getImage } from '../../utils/pb.utils';
+import { LazyLoadImage } from '../common/LazyLoadImage';
 
 type Props = {
   media: ProjectMedia

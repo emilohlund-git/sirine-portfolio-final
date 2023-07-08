@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import ImageCarousel from './EmblaCarousel/ImageCarousel';
-import GradientButton from './GradientButton';
+import GradientButton from '../common/GradientButton';
+import ImageCarousel from './ImageCarousel';
 
 type Props = {
   slides: {

@@ -1,5 +1,5 @@
 import { CSSProperties, ReactNode } from 'react';
-import Spotlight, { SpotlightCard } from './SpotlightCard';
+import Spotlight, { SpotlightCard } from '../cards/SpotlightCard';
 
 type Props = {
   children: ReactNode;

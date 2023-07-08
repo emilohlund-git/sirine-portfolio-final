@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineLinkedin, AiOutlineProject } from 'react-icons/ai';
-import Cards from "../components/Cards";
-import Contact from "../components/Contact";
-import Divider from "../components/Divider";
-import FadeIn from "../components/FadeIn";
-import GradientButton from "../components/GradientButton";
-import ProjectBanner from "../components/ProjectBanner";
-import Spotlight, { SpotlightCard } from "../components/SpotlightCard";
+import FadeIn from "../components/animations/FadeIn";
+import Cards from "../components/cards/Cards";
+import Spotlight, { SpotlightCard } from "../components/cards/SpotlightCard";
+import Divider from "../components/common/Divider";
+import GradientButton from "../components/common/GradientButton";
+import Contact from "../components/contact/Contact";
+import ProjectBanner from "../components/project-views/ProjectBanner";
 import pb from "../utils/pb.config";
 
 export const revalidate = 60

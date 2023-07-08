@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
-import Spinner from './Spinner';
+import Spinner from './common/Spinner';
 
 type Props = {
   url?: string;

@@ -3,7 +3,7 @@
 import { FormEvent, useRef, useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { setSent } from '../redux/features/email/emailSlice';
+import { setSent } from '../../redux/features/email/emailSlice';
 
 type Props = {}
 

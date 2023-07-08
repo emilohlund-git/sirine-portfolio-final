@@ -1,8 +1,8 @@
 import React from 'react';
-import { projectMediaArrayByFileType, shouldBeCarouselProjectMediaArray } from '../utils/array.utils';
-import { getImage } from '../utils/pb.utils';
-import ImageCarousel from './EmblaCarousel/ImageCarousel';
-import GridBox from './GridBox';
+import { projectMediaArrayByFileType, shouldBeCarouselProjectMediaArray } from '../../utils/array.utils';
+import { getImage } from '../../utils/pb.utils';
+import ImageCarousel from '../carousel/ImageCarousel';
+import GridBox from '../common/GridBox';
 import ProjectMedia from './ProjectMedia';
 
 type Props = {

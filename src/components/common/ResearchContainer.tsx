@@ -1,11 +1,11 @@
 import React from 'react'
-import { projectMediaArrayByFileType, shouldBeCarouselProjectMediaArray } from '../utils/array.utils'
-import { getImage } from '../utils/pb.utils'
-import ImageCarousel from './EmblaCarousel/ImageCarousel'
+import { projectMediaArrayByFileType, shouldBeCarouselProjectMediaArray } from '../../utils/array.utils'
+import { getImage } from '../../utils/pb.utils'
+import ImageCarousel from '../carousel/ImageCarousel'
+import ProjectMedia from '../project-views/ProjectMedia'
 import GridBox from './GridBox'
 import GridBoxHeader from './GridBoxHeader'
 import GridContainer from './GridContainer'
-import ProjectMedia from './ProjectMedia'
 
 type Props = {
   research: ProjectMediaContent[];

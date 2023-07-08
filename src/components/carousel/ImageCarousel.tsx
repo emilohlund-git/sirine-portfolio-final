@@ -2,8 +2,8 @@
 
 import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
 import React, { CSSProperties, useCallback, useEffect, useState } from 'react';
-import { LazyLoadImage } from '../LazyLoadImage';
-import Spinner from '../Spinner';
+import { LazyLoadImage } from '../common/LazyLoadImage';
+import Spinner from '../common/Spinner';
 import { Thumb } from './EmblaThumbButton';
 import './embla.css';
 

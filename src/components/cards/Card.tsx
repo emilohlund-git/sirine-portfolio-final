@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from "react";
-import FadeIn from "./FadeIn";
+import FadeIn from "../animations/FadeIn";
 import Spotlight, { SpotlightCard } from "./SpotlightCard";
 
 export const Card: React.FC<{

@@ -2,8 +2,8 @@
 
 import { AiOutlineMail } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import GradientButton from './GradientButton';
+import { RootState } from '../../redux/store';
+import GradientButton from '../common/GradientButton';
 
 type Props = {}
 

@@ -1,13 +1,13 @@
 import React from 'react'
 import { projectHasLogoVideo, shouldBeCarouselProjectMediaArray } from '../../utils/array.utils'
 import { getImage, getImageThumb } from '../../utils/pb.utils'
-import ImageCarousel from '../EmblaCarousel/ImageCarousel'
 import FigmaPrototype from '../FigmaPrototype'
-import GridBox from '../GridBox'
-import GridBoxHeader from '../GridBoxHeader'
-import GridContainer from '../GridContainer'
-import ProjectMedia from '../ProjectMedia'
-import ResearchContainer from '../ResearchContainer'
+import ImageCarousel from '../carousel/ImageCarousel'
+import GridBox from '../common/GridBox'
+import GridBoxHeader from '../common/GridBoxHeader'
+import GridContainer from '../common/GridContainer'
+import ResearchContainer from '../common/ResearchContainer'
+import ProjectMedia from '../project-views/ProjectMedia'
 
 type Props = {
   project: ProjectType;

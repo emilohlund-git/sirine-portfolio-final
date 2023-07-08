@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-import { getImage } from '../utils/pb.utils'
-import GridBox from './GridBox'
+import { getImage } from '../../utils/pb.utils'
+import GridBox from '../common/GridBox'
 
 type Props = {
   project: ProjectType;
