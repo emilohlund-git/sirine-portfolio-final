@@ -18,7 +18,7 @@ type Props = {
 const ImageCarousels: React.FC<Props> = ({ slides, thumbs }) => {
   const [currentGallery, setCurrentGallery] = useState(slides[0].title);
   const [filter, setFilter] = useState('');
-  const [sliderValue, setSliderValue] = useState(0);
+  const [sliderValue, setSliderValue] = useState(50);
 
   const handleChange = (event: any) => {
     setSliderValue(event.target.value);
