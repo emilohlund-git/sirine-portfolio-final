@@ -57,9 +57,9 @@ const ProjectBanner: React.FC<Props> = ({ project, imageAlignment, href }) => {
             )
           })}
         </div>
-        <span className={`font-semibold pl-2 link`} style={{
-          color: project.expand.colors.project_theme_color
-        }}><Link href={href}>&gt; Read more</Link></span>
+        <Link href={href} className={`btn btn-square btn-md bg-black bg-opacity-30 w-fit font-semibold px-4`} style={{
+          color: project.expand.colors.project_theme_color,
+        }}>&gt; View Project</Link>
       </div>
     </div>
   )
